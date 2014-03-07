@@ -7,18 +7,11 @@
 	<th>Distance</th>
   <tr>
 <% @trips.each do |trip| %>
-  <% if trip.last_trip? %>
-    <% distance = trip.odo - trip.last_trip.odo %>
-	<% id = trip.last_trip.id %>
-  <% else %>
-    <% distance = trip.odo %>
-	<% id = "" %>
-  <% end %>
   <tr>
     <td><%= trip.id %></td>
-	<td><%= id %></td>
+	<td><%= trip.last_trip.id %></td>
 	<td><%= trip.odo %></td>
-    <td><%= distance %></td>
+    <td><%= trip.odo - trip.last_trip.odo %></td>
 <% end %>
 </table>
 <% if @trips.size == 0 %>
