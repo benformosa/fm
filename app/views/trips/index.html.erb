@@ -1,17 +1,26 @@
 <table>
   <tr>
     <th>ID</th>
-	<th>Odometer</th>
 	<th>Last trip</th>
+	<th>Odometer</th>
+	<th>Distance</th>
   <tr>
 <% @trips.each do |trip| %>
+  <% if trip.last_trip? %>
+    <% distance = trip.odo - trip.last_trip.odo %>
+	<% id = trip.last_trip.id %>
+  <% else %>
+    <% distance = trip.odo %>
+	<% id = "" %>
+  <% end %>
   <tr>
     <td><%= trip.id %></td>
+	<td><%= id %></td>
 	<td><%= trip.odo %></td>
-	<td><%= trip.last_trip %></td>
+    <td><%= distance %></td>
 <% end %>
 </table>
 <% if @trips.size == 0 %>
-  <em>No trips found</em>
+  <em>No trips found</em><br />
 <% end %>
 <%= link_to "Log new trip", new_trip_path(:last_trip => @trips.last) %>

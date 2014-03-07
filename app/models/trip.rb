@@ -8,8 +8,10 @@ class Trip < ActiveRecord::Base
   validate :greater_than_last_trip
 	
   def greater_than_last_trip
-    if odo < last_trip.odo
-	  self.errors.add(:base, "Odometer reading must be greater than the reading from the last trip")
-	end
+    unless Trip.find(:all).empty?
+      if odo < last_trip.odo
+	    self.errors.add(:base, "Odometer reading must be greater than the reading from the last trip")
+	  end
+    end
   end
 end

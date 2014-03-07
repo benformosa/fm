@@ -4,7 +4,6 @@ class TripsController < ApplicationController
   end
   
   def new
-    @last_trip = Trip.last.id
     @trip = Trip.new
   end
   
@@ -12,7 +11,7 @@ class TripsController < ApplicationController
 	if not Trip.find(:all).empty?
 	  last_trip = Trip.find(trip_params[:last_trip])
 	end	
-	
+
     odo = trip_params[:odo]
 	@trip = Trip.new(:odo => odo, :last_trip => last_trip)
 	if(@trip.save)
