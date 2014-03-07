@@ -1,10 +1,6 @@
 class TripsController < ApplicationController
   def index
-    if params[:car]
-	  @trips = Trip.where(car: params[:car])
-    else
 	  @trips = Trip.all
-	end
   end
   
   def new
@@ -12,7 +8,7 @@ class TripsController < ApplicationController
   end
   
   def create
-    @trip = Trip.new(params[:trip])
+    @trip = Trip.new(trip_params)
 	if(@trip.save)
 	  redirect_to :action => :index
 	else
@@ -21,6 +17,10 @@ class TripsController < ApplicationController
   end
   
   def show
-    @trip = Trip.find(params[:id])
+    @trip = Trip.find(trip_params)
+  end
+  
+  def trip_params
+    params.require(:trip).permit(:odo, :last_trip)
   end
 end

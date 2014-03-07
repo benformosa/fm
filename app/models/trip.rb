@@ -5,6 +5,4 @@ class Trip < ActiveRecord::Base
   validates :odo, presence: true,
     numericality: true
   validates :last_trip, presence: true
-	
-  attr_accessible :odo, :last_trip
 end
