@@ -14,7 +14,7 @@ class TripsController < ApplicationController
   def create
     odo = trip_params[:odo]
     last_trip = Trip.find(trip_params[:last_trip])
-    car = trip_params[:car]
+    car = Car.find(trip_params[:car])
     @trip = Trip.new(:odo => odo, :last_trip => last_trip, :car => car)
     if(@trip.save)
       redirect_to :action => :index

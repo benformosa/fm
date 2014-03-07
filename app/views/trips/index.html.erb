@@ -1,6 +1,7 @@
-<h1>Trips</h1>
+<h1><%= link_to "Trips", trips_path %></h1>
 <table>
   <tr>
+    <th>Trip</th>
     <th>Car</th>
     <th>ID</th>
     <th>Last trip</th>
@@ -9,16 +10,17 @@
   <tr>
 <% @trips.each do |trip| %>
 <% # if this is the first trip %>
-  <% if trip.car.trips.last == trip %>
+  <% if Trip.where(car_id: trip.car).order(:id).first.id == trip.id %>
     <% distance = trip.odo %>
     <% id = "-" %>
   <% else %>
-    <% distance = trip.odo - trip.last_trip %>
+    <% distance = trip.odo - trip.last_trip.odo %>
     <% id = trip.last_trip.id %>
   <% end %>
 
   <tr>
-    <td><%= trip.car.name %></td>
+    <td><%= trip.id %></td>
+    <td><%= link_to trip.car.name, trips_path(:car => trip.car) %></td>
     <td><%= trip.id %></td>
     <td><%= id %></td>
     <td><%= trip.odo %></td>
@@ -28,4 +30,8 @@
 <% if @trips.size == 0 %>
   <em>No trips found</em><br />
 <% end %>
-<%= link_to "Log new trip", new_trip_path %>
+<% if params[:car] %>
+  <%= link_to "Log new trip for " + Car.where(id: params[:car]).last.name, new_trip_path(:car => params[:car]) %>
+<% else %>
+  <%= link_to "Log new trip", new_trip_path %>
+<% end %>

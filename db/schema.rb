@@ -26,13 +26,11 @@ ActiveRecord::Schema.define(version: 20140307163709) do
   create_table "trips", force: true do |t|
     t.integer  "odo"
     t.integer  "last_trip"
-    t.integer  "trip_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "car_id"
   end
 
   add_index "trips", ["car_id"], name: "index_trips_on_car_id"
-  add_index "trips", ["trip_id"], name: "index_trips_on_trip_id"
 
 end
