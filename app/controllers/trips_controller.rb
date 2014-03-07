@@ -22,10 +22,6 @@ class TripsController < ApplicationController
 	end
   end
   
-  def show
-    @trip = Trip.find(trip_params)
-  end
-  
   private
     def trip_params
       params.require(:trip).permit(:odo, :last_trip)

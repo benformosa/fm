@@ -14,10 +14,13 @@
   <div class="field">
   <% if not Trip.find(:all).empty? %>
     <% id = Trip.last.id %>
+	<% last_odo = Trip.last.odo %>
   <% end %>
   
 	<%= f.text_field :last_trip, :value => id %><br />
-    <%= f.label :odo, "Odometer reading" %><br />
+	<%= f.label :foo, "Start odometer reading" %><br />
+	<%= f.text_field :foo, :value => last_odo %><br />
+    <%= f.label :odo, "End odometer reading" %><br />
     <%= f.text_field :odo %><br />
   </div>
 
