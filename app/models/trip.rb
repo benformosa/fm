@@ -6,7 +6,8 @@ class Trip < ActiveRecord::Base
     numericality: true
   
   validate :greater_than_last_trip
-	
+
+  #validate that the odometer reading has gone up, except for the first trip
   def greater_than_last_trip
     unless Trip.find(:all).empty?
       if odo < last_trip.odo
