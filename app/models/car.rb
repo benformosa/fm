@@ -4,6 +4,8 @@ class Car < ActiveRecord::Base
   validates :name, presence: true
   validates :start_odo, presence: true,
     numericality: true
+    
+  after_create :initial_trip
 	
   # create a trip representing the odometer reading of the car when it was added to the system
   def initial_trip

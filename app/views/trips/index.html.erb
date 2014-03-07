@@ -1,17 +1,28 @@
-<h1>All trips</h1>
+<h1>Trips</h1>
 <table>
   <tr>
+    <th>Car</th>
     <th>ID</th>
-	<th>Last trip</th>
-	<th>Odometer</th>
-	<th>Distance</th>
+    <th>Last trip</th>
+    <th>Odometer</th>
+    <th>Distance</th>
   <tr>
 <% @trips.each do |trip| %>
+<% # if this is the first trip %>
+  <% if trip.car.trips.last == trip %>
+    <% distance = trip.odo %>
+    <% id = "-" %>
+  <% else %>
+    <% distance = trip.odo - trip.last_trip %>
+    <% id = trip.last_trip.id %>
+  <% end %>
+
   <tr>
+    <td><%= trip.car.name %></td>
     <td><%= trip.id %></td>
-	<td><%= trip.last_trip.id %></td>
-	<td><%= trip.odo %></td>
-    <td><%= trip.odo - trip.last_trip.odo %></td>
+    <td><%= id %></td>
+    <td><%= trip.odo %></td>
+    <td><%= distance %></td>
 <% end %>
 </table>
 <% if @trips.size == 0 %>

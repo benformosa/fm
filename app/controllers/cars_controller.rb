@@ -8,7 +8,7 @@ class CarsController < ApplicationController
   end
   
   def create
-    @car = Car.new(params[:car])
+    @car = Car.new(car_params)
 	if(@car.save)
 	  redirect_to :action => :index
 	else
@@ -17,6 +17,11 @@ class CarsController < ApplicationController
   end
   
   def show
-    @car = Car.find(params[:id])
+    @car = Car.find(car_params[:id])
   end
+  
+  private
+    def car_params
+      params.require(:car).permit(:name, :start_odo)
+    end
 end

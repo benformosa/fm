@@ -1,0 +1,12 @@
+<%= form_for @car do |f| %>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %><br />
+	<%= f.label :start_odo, "Initial Odometer reading" %><br />
+    <%= f.text_field :start_odo %><br />
+  </div>
+ 
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

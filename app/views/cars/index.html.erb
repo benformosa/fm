@@ -1,0 +1,17 @@
+<h1>Cars</h1>
+<table>
+  <tr>
+    <th>Car</th>
+  <tr>
+<% @cars.each do |car| %>
+  <tr>
+    <td><%= link_to car.name, car_path(car) %></td>
+	  <td><%= link_to "Show trips", trips_path(:car => car) %>
+	  <td><%= link_to "Log trip", new_trip_path(:car => car) %>
+  </tr>
+<% end %>
+</table>
+<% if @cars.size == 0 %>
+  <em>No cars found</em><br />
+<% end %>
+<%= link_to "Add new car", new_car_path %>

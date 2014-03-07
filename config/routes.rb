@@ -1,4 +1,5 @@
 Fml::Application.routes.draw do
-  root to: "trips#index"
+  root to: "cars#index"
+  resources :cars
   resources :trips
 end
