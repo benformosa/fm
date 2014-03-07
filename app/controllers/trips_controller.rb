@@ -8,6 +8,7 @@ class TripsController < ApplicationController
   end
   
   def create
+    # set the last trip, unless this is the first trip
 	if not Trip.find(:all).empty?
 	  last_trip = Trip.find(trip_params[:last_trip])
 	end	
