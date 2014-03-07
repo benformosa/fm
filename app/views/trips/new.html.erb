@@ -1,10 +1,22 @@
 <%= form_for @trip do |f| %>
+  <div class="message">
+    <% if @trip.errors.any? %>
+	  <h2>Unable to save trip</h2>
+	  <ul>
+	  <% @trip.errors.full_messages.each do |msg| %>
+	    <li><%= msg %>
+	  <% end %>
+	  </ul>
+	<% end %>
+  </div>
+
   <div class="field">
+    <%= f.label :last_trip, "Last Trip ID" %><br />
 	<%= f.text_field :last_trip, :value => @last_trip %><br />
     <%= f.label :odo, "Odometer reading" %><br />
     <%= f.text_field :odo %><br />
   </div>
- 
+
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -4,5 +4,12 @@ class Trip < ActiveRecord::Base
 
   validates :odo, presence: true,
     numericality: true
-  validates :last_trip, presence: true
+  
+  validate :greater_than_last_trip
+	
+  def greater_than_last_trip
+    if odo < last_trip.odo
+	  self.errors.add(:base, "Odometer reading must be greater than the reading from the last trip")
+	end
+  end
 end
