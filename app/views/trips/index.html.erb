@@ -1,0 +1,16 @@
+<table>
+  <tr>
+    <th>ID</th>
+	<th>Odometer</th>
+	<th>Last trip</th>
+  <tr>
+<% @trips.each do |trip| %>
+  <tr>
+    <td><%= trip.id %></td>
+	<td><%= trip.odo %></td>
+	<td><%= trip.last_trip %></td>
+<% end %>
+<% if @trips.size == 0 %>
+  <em>No trips found</em>
+<% end %>
+<%= link_to "Log new trip", new_trip_path(:last_trip => @trips.last) %>

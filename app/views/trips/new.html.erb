@@ -1,0 +1,11 @@
+<%= form_for @trip do |f| %>
+  <div class="field">
+	<%= f.text_field :last_trip, :value => @last_trip %><br />
+    <%= f.label :odo, "Odometer reading" %><br />
+    <%= f.text_field :odo %><br />
+  </div>
+ 
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
