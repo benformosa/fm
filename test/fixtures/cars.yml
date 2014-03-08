@@ -1,11 +1,5 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  car_id: 1
-  start_odo: 1
-  name: MyString
-
-two:
-  car_id: 1
-  start_odo: 1
-  name: MyString
+  start_odo: 10
+  name: car

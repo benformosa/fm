@@ -3,7 +3,7 @@
   <tr>
     <th>Trip</th>
     <th>Car</th>
-    <th>ID</th>
+    <th>Driver</th>
     <th>Last trip</th>
     <th>Odometer</th>
     <th>Distance</th>
@@ -21,7 +21,7 @@
   <tr>
     <td><%= trip.id %></td>
     <td><%= link_to trip.car.name, trips_path(:car => trip.car) %></td>
-    <td><%= trip.id %></td>
+    <td><%= trip.user.name %></td>
     <td><%= id %></td>
     <td><%= trip.odo %></td>
     <td><%= distance %></td>

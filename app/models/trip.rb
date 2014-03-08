@@ -6,6 +6,9 @@ class Trip < ActiveRecord::Base
   belongs_to :car
   validates :car_id, presence: true
 
+  belongs_to :user
+  validates :user_id, presence: true
+
   validates :odo, presence: true,
     numericality: true
 
