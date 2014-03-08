@@ -11,21 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140308055251) do
+ActiveRecord::Schema.define(version: 20140308115245) do
 
   create_table "cars", force: true do |t|
-    t.integer  "car_id"
     t.integer  "start_odo"
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "cars", ["car_id"], name: "index_cars_on_car_id"
-
-  create_table "drivers", force: true do |t|
-    t.string   "name"
-    t.string   "login"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -36,9 +26,21 @@ ActiveRecord::Schema.define(version: 20140308055251) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "car_id"
-    t.integer  "driver_id"
+    t.integer  "user_id"
   end
 
   add_index "trips", ["car_id"], name: "index_trips_on_car_id"
+
+  create_table "users", force: true do |t|
+    t.string   "login",               default: "", null: false
+    t.string   "encrypted_password",  default: "", null: false
+    t.datetime "remember_created_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "email"
+    t.string   "name"
+  end
+
+  add_index "users", ["login"], name: "index_users_on_login", unique: true
 
 end
