@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140307163709) do
+ActiveRecord::Schema.define(version: 20140308055251) do
 
   create_table "cars", force: true do |t|
     t.integer  "car_id"
@@ -23,12 +23,20 @@ ActiveRecord::Schema.define(version: 20140307163709) do
 
   add_index "cars", ["car_id"], name: "index_cars_on_car_id"
 
+  create_table "drivers", force: true do |t|
+    t.string   "name"
+    t.string   "login"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "trips", force: true do |t|
     t.integer  "odo"
     t.integer  "last_trip"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "car_id"
+    t.integer  "driver_id"
   end
 
   add_index "trips", ["car_id"], name: "index_trips_on_car_id"

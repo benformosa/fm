@@ -5,3 +5,6 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+Driver.create(:name => "Admin", :login => "admin")
+Driver.create(:name => "Unregistered travel", :login => "unregistered")
