@@ -1,4 +1,6 @@
 class TripsController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     if params[:car]
       @trips = Trip.where(car_id: params[:car])
