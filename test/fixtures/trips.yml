@@ -3,9 +3,7 @@
 one:
   odo: 1
   last_trip: 1
-  trip_id: 1
 
 two:
   odo: 1
   last_trip: 1
-  trip_id: 1
