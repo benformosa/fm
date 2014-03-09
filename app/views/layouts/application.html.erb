@@ -7,12 +7,19 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div class="notice"><%= notice %></div>
-<div class="alert"><%= alert %></div>
+  <div id="header">
+    <h1>fml</h1>
+  </div>
 
-<%= yield %>
+  <div id="container">
+    <div class="notice"><%= notice %></div>
+    <div class="alert"><%= alert %></div>
+    <%= yield %>
+  </div>
 
-<div class="links"><%= link_to "Cars", cars_path %> <%= link_to "Trips", trips_path %></div>
-<div class="login"><%= link_to "Log out", destroy_user_session_path, :method => :delete %></div>
+  <footer>
+    <div class="links"><%= link_to "Cars", cars_path %> <%= link_to "Trips", trips_path %></div>
+    <div class="login"><%= link_to "Log out", destroy_user_session_path, :method => :delete %></div>
+  </footer>
 </body>
 </html>

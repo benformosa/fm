@@ -1,17 +1,27 @@
 <h1>Cars</h1>
-<table>
-  <tr>
-    <th>Car</th>
-  <tr>
+<div id="cars">
+<ul>
 <% @cars.each do |car| %>
-  <tr>
-    <td><%= car.name %></td>
-	  <td><%= link_to "Show trips", trips_path(:car => car) %>
-	  <td><%= link_to "Log trip", new_trip_path(:car => car) %>
-  </tr>
+  <% file = 'car-' + car.id.to_s + '.png' %>
+  <% if File.exists?(Rails.root.join('app', 'assets', 'images', file)) %>
+    <% image = image_path(file) %>
+<%#  <% else %>
+<%#    <% file = car.make + '.png' %>
+<%#    <% if File.exists?(image_path(file)) %>
+<%#      <% image = image_path(file) %>
+  <% else %>
+    <% image = "car.png" %>
+<%#    <% end %>
+  <% end %>
+  <li><span><%= link_to trips_path(:car => car) do %><%= image_tag image, size: "50x50", alt: car.name, class: "car_image" %></span>
+    <span><%= car.name %><% end %></span>
+    <%= link_to "Log trip", new_trip_path(:car => car) %>
 <% end %>
-</table>
+</ul><br />
+</div>
 <% if @cars.size == 0 %>
   <em>No cars found</em><br />
 <% end %>
-<%= link_to "Add new car", new_car_path %>
+<div style="clear:both">
+<%= link_to "Add new car", new_car_path, class: "button" %>
+</div>

@@ -31,5 +31,5 @@
   <em>No trips found</em><br />
 <% end %>
 <% if params[:car] %>
-  <%= link_to "Log new trip for " + Car.where(id: params[:car]).last.name, new_trip_path(:car => params[:car]) %>
+  <%= link_to "Log new trip for " + Car.where(id: params[:car]).last.name, new_trip_path(:car => params[:car]), class: "button" %>
 <% end %>

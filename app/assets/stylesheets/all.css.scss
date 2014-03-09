@@ -1,0 +1,92 @@
+$dark: #333333;
+$mid: #999999;
+$light: #F6F6F6;
+$bright: #BF2726;
+
+@mixin rounded-corners($radius) {
+  border-radius: $radius;
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+}
+
+@mixin hover {
+  opacity: 0.75;
+  transition: all 0.3s linear;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+body {
+  background-color: $light;
+  font-family: verdana;
+  font-size: 16px;
+}
+
+h1 {
+  font-size: 30px;
+  color: $bright;
+}
+
+a {
+  color: $bright;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+table, td, th { 
+  vertical-align: middle; 
+  border: none;
+}
+
+th { 
+  color: $dark;
+  border-bottom: 1px solid $mid; 
+}
+
+input {
+  border: 1px solid $mid;
+  padding: 2px;
+  @include rounded-corners(5px);
+}
+
+.button, input[type="submit"] {
+  color: $light;
+  background-color: $dark;
+  display: inline-block;
+  @include hover;
+  @include rounded-corners(5px);
+  padding: 5px 12px;
+  margin-top: 10px;
+}
+
+#container {
+  margin: 0 50px;
+  min-height: 60vh;
+}
+
+#header, footer {
+  background-color: $dark;
+  padding: 4px 50px;
+  border-bottom: solid 5px $mid;
+  min-height: 10vh;
+
+  h1 {
+    color: $light;
+  }
+}
+
+footer {
+  min-height: 5vh;
+
+  a {
+    color: lighten($bright, 10%)
+  }
+}
+
+.notice, .alert {
+  color: $bright;
+}

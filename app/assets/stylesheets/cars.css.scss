@@ -1,3 +1,27 @@
-// Place all the styles related to the cars controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+#cars {
+  ul {
+    list-style: none;
+
+    li { 
+      display: inline;
+      list-style: none;
+      float: left;
+      padding: 10px;
+      margin: 5px;
+      text-align:center; 
+
+      &:hover img {
+        opacity:1;
+      }
+
+      a {
+        display: block;
+      }
+
+      img {
+        margin: 5px 0;
+        @include hover;
+      }
+    }
+  }
+}
