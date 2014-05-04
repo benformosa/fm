@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 gem 'erubis', '~> 2.7.0'
 
 gem 'devise', '~> 3.2.3'
+gem 'devise_ldap_authenticatable'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.3'
