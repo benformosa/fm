@@ -17,6 +17,8 @@ authorizations: &AUTHORIZATIONS
     #objectClass: inetOrgPerson
     #authorizationRole: postsAdmin
 
+  admin_group: cn=fleet-manager-admins,cn=users,dc=fm,dc=internal 
+
 ## Environment
 
 development:

@@ -23,5 +23,7 @@
   <em>No cars found</em><br />
 <% end %>
 <div style="clear:both">
+<% if current_user.is_admin? %>
 <%= link_to "Add new car", new_car_path, class: "button" %>
+<% end %>
 </div>
