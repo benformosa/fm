@@ -21,8 +21,8 @@
     <%= f.label :car, "Car" %></br>
     <%= f.text_field :car, :value => @trip.car.id, readonly: true %><br />
   
-    <% if false %> <%= f.label :last_trip, "Last trip ID" %></br> <% end %>
-    <% if false %> <%= f.text_field :last_trip, :value => Trip.where(car_id: @trip.car).last.id, readonly: true %><br /> <% end %>
+    <%= f.label :last_trip, "Last trip ID" %></br>
+    <%= f.text_field :last_trip, :value => Trip.where(car_id: @trip.car).last.id, readonly: true %><br />
     
     <label>Start odometer reading</label><br />
     <input type="text" readonly value="<%= Trip.where(car_id: @trip.car).last.odo %>" /><br />
