@@ -24,6 +24,9 @@ class TripsController < ApplicationController
       render :action => :new
     end
   end
+
+  def update
+  end
   
   private
     def trip_params

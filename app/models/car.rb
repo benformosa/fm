@@ -3,8 +3,7 @@ class Car < ActiveRecord::Base
   has_many :users, through: :trips
   
   validates :name, presence: true
-  validates :start_odo, presence: true,
-    numericality: true
+  validates :start_odo, presence: true, numericality: true
     
   after_create :initial_trip
 	
