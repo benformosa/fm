@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 # for rails.vim
 gem 'erubis', '~> 2.7.0'
 
+# Use devise for authentication
 gem 'devise', '~> 3.2.3'
 gem 'devise_ldap_authenticatable'
 

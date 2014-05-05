@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140504164611) do
+ActiveRecord::Schema.define(version: 20140504230909) do
 
   create_table "cars", force: true do |t|
     t.integer  "start_odo"
@@ -32,14 +32,14 @@ ActiveRecord::Schema.define(version: 20140504164611) do
   add_index "trips", ["car_id"], name: "index_trips_on_car_id"
 
   create_table "users", force: true do |t|
-    t.string   "login",               default: "", null: false
-    t.string   "encrypted_password",  default: "", null: false
+    t.string   "login",               default: "",    null: false
+    t.string   "encrypted_password",  default: "",    null: false
     t.datetime "remember_created_at"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "email"
     t.string   "name"
-    t.boolean  "is_admin"
+    t.boolean  "is_admin",            default: false
   end
 
   add_index "users", ["login"], name: "index_users_on_login", unique: true

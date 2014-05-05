@@ -1,35 +1,3 @@
 <h1>Enter new trip</h1>
-<%= form_for @trip do |f| %>
-  <div class="message">
-    <% if @trip.errors.any? %>
-      <h2>Unable to save trip</h2>
-      <ul>
-      <% @trip.errors.full_messages.each do |msg| %>
-        <li><%= msg %>
-      <% end %>
-      </ul>
-    <% end %>
-  </div>
-  
-  <% if params[:car] %>
-    <% @trip.car = Car.find(params[:car]) %>
-  <% end %>
 
-  <div class="field">
-    <%= f.label :car, "Car" %></br>
-    <%= f.text_field :car, :value => @trip.car.id, readonly: true %><br />
-  
-    <%= f.label :last_trip, "Last trip ID" %></br>
-    <%= f.text_field :last_trip, :value => Trip.where(car_id: @trip.car).last.id, readonly: true %><br />
-    
-    <%= f.label :foo, "Start odometer reading" %><br />
-    <%= f.text_field :foo, :value => Trip.where(car_id: @trip.car).last.odo, readonly: true %><br />
-    
-    <%= f.label :odo, "End odometer reading" %><br />
-    <%= f.text_field :odo %><br />
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+<%= render 'form' %>
