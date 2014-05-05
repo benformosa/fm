@@ -4,14 +4,14 @@
 <% @cars.each do |car| %>
   <% file = 'car-' + car.id.to_s + '.png' %>
   <% if File.exists?(Rails.root.join('app', 'assets', 'images', file)) %>
-    <% image = image_path(file) %>
-<%#  <% else %>
-<%#    <% file = car.make + '.png' %>
-<%#    <% if File.exists?(image_path(file)) %>
-<%#      <% image = image_path(file) %>
+    <% image = path_to_image(file) %>
   <% else %>
-    <% image = "car.png" %>
-<%#    <% end %>
+    <% file = car.make.downcase + '.png' %>
+    <% if File.exists?(Rails.root.join('app', 'assets', 'images', file)) %>
+      <% image = image_path(file) %>
+    <% else %>
+      <% image = "car.png" %>
+    <% end %>
   <% end %>
   <li><span><%= link_to trips_path(:car => car) do %><%= image_tag image, size: "50x50", alt: car.name, class: "car_image" %></span>
     <span><%= car.name %><% end %></span>
