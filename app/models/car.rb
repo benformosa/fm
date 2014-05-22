@@ -16,7 +16,7 @@ class Car < ActiveRecord::Base
 	
   # create a trip representing the odometer reading of the car when it was added to the system
   def initial_trip
-    Trip.create({:car => self, :odo => self.start_odo, :user => User.where(login: "unregistered").first})
+    Trip.create({:car => self, :odo => self.start_odo, :user => User.where(login: "unregistered").first, :date => Time.now})
   end
 
   # replace spaces in rego with interpuncts, change to uppercase
