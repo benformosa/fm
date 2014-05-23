@@ -7,7 +7,7 @@ class CarsController < ApplicationController
   
   def new
     @car = Car.new
-    authorize @car
+    authorize @car, :modify?
   end
   
   def create
@@ -42,7 +42,6 @@ class CarsController < ApplicationController
   
   private
     def car_params
-      params.permit(:id, :name, :start_odo)
-      #.require(:car)
+      params.require(:car).permit(:id, :name, :make, :model, :rego, :state, :start_odo)
     end
 end
