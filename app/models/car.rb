@@ -4,7 +4,7 @@ class Car < ActiveRecord::Base
   has_many :trips
   has_many :users, through: :trips
   
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
   validates :make, presence: true
   validates :model, presence: true
   validates :rego, presence: true
