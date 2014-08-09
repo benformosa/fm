@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140505134755) do
+ActiveRecord::Schema.define(version: 20140809081420) do
 
   create_table "cars", force: true do |t|
     t.integer  "start_odo"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20140505134755) do
     t.string   "email"
     t.string   "name"
     t.boolean  "is_admin",            default: false
+    t.string   "remember_token"
   end
 
   add_index "users", ["login"], name: "index_users_on_login", unique: true
