@@ -1,0 +1,10 @@
+<h1>Trips per Month</h1>
+
+<% total = 0 %>
+<% @car.each do |c| %>
+  <%= c.name %>:
+  <% trips = Trip.where(car_id: c.id).where("date < ?", Date.today.end_of_month).where("date > ?", Date.today.beginning_of_month).count %>
+  <%= trips %><br>
+  <% total += trips %>
+<% end %>
+Total: <%= total %>

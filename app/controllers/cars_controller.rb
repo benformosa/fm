@@ -39,9 +39,27 @@ class CarsController < ApplicationController
     end
   end
 
+  def tripspermonth
+    # if param id is set
+    if(params.has_key?(:id))
+      @car = Car.where(id: (car_params[:id]))
+    else
+      @car = Car.all
+    end
+  end
+
+  def kmpermonth
+    # if param id is set
+    if(params.has_key?(:id))
+      @car = Car.where(id: (car_params[:id]))
+    else
+      @car = Car.all
+    end
+  end
   
   private
     def car_params
       params.require(:car).permit(:id, :name, :make, :model, :rego, :state, :start_odo)
+      #params.permit(:car, :id, :name, :make, :model, :rego, :state, :start_odo)
     end
 end
