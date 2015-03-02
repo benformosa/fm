@@ -11,6 +11,7 @@ class Trip < ActiveRecord::Base
   validates :user_id, presence: true
 
   validates :odo, presence: true, numericality: true
+  validates :location, presence: true
   validates :date, presence: true
 
   #validate that the odometer reading has gone up and that the date is not earlier, except for the initial trip

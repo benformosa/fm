@@ -6,17 +6,21 @@
     <th>Date</th>
     <th>Driver</th>
     <th>Last trip</th>
-    <th>Odometer</th>
+    <th>Start Odometer</th>
+    <th>End Odometer</th>
+    <th>Start Location</th>
+    <th>End Location</th>
     <th>Distance</th>
   <tr>
 <% @trips.each do |trip| %>
 <% # if this is the first trip %>
-  <% if Trip.where(car_id: trip.car).order(:id).first.id == trip.id %>
+  <% first_trip = Trip.where(car_id: trip.car).order(:id).first.id == trip.id %>
+  <% if first_trip %>
     <% distance = trip.odo %>
-    <% id = "-" %>
+    <% last_id = "-" %>
   <% else %>
     <% distance = trip.odo - trip.last_trip.odo %>
-    <% id = trip.last_trip.id %>
+    <% last_id = trip.last_trip.id %>
   <% end %>
 
   <tr>
@@ -24,8 +28,19 @@
     <td><%= link_to trip.car.name, trips_path(:car => trip.car) %></td>
     <td><%= trip.date.strftime('%d/%m/%Y') %></td>
     <td><%= trip.user.name %></td>
-    <td><%= id %></td>
+    <td><%= last_id %></td>
+    <% if first_trip %>
+      <td>-</td>
+    <% else %>
+      <td><%= Trip.find(last_id).odo %>
+    <% end %>
     <td><%= trip.odo %></td>
+    <% if first_trip %>
+      <td>-</td>
+    <% else %>
+      <td><%= Trip.find(last_id).location %>
+    <% end %>
+    <td><%= trip.location %>
     <td><%= distance %></td>
 <% end %>
 </table>

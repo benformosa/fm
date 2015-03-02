@@ -30,6 +30,9 @@
     <label>Start odometer reading</label><br />
     <input type="text" readonly value="<%= Trip.where(car_id: @trip.car).last.odo %>" /><br />
     
+    <%= f.label :location, "End location" %><br />
+    <%= f.text_field :location %><br />
+    
     <%= f.label :odo, "End odometer reading" %><br />
     <%= f.text_field :odo %><br />
   </div>

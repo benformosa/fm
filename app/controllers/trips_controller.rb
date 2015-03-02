@@ -15,9 +15,10 @@ class TripsController < ApplicationController
   
   def create
     odo = trip_params[:odo]
+    location = trip_params[:location]
     last_trip = Trip.find(trip_params[:last_trip])
     car = Car.find(trip_params[:car])
-    @trip = Trip.new(:odo => odo, :last_trip => last_trip, :car => car, :user => current_user, :date => trip_params[:date])
+    @trip = Trip.new(:odo => odo, :location => location, :last_trip => last_trip, :car => car, :user => current_user, :date => trip_params[:date])
     if(@trip.save)
       redirect_to :action => :index
     else
@@ -30,6 +31,6 @@ class TripsController < ApplicationController
   
   private
     def trip_params
-      params.require(:trip).permit(:odo, :last_trip, :car, :date)
+      params.require(:trip).permit(:odo, :location, :last_trip, :car, :date)
     end
 end
