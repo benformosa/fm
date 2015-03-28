@@ -29,7 +29,6 @@ class CarsController < ApplicationController
   end
 
   def update
-    @car = Car.find(car_params[:id])
     authorize @car, :modify?
     if @car.update_attributes(car_params)
       redirect_to :action => :index
