@@ -8,11 +8,11 @@ class CarsController < ApplicationController
 
   def new
     @car = Car.new
-    authorize @car, :modify?
   end
 
   def create
     @car = Car.new(car_params)
+    @car[:user_id] = current_user.id
     authorize @car, :modify?
     if(@car.save)
       redirect_to :action => :index
@@ -62,7 +62,6 @@ class CarsController < ApplicationController
   end
 
   def car_params
-    params.require(:car).permit(:name, :make, :model, :rego, :state, :start_odo, :user_id)
-    #params.permit(:car, :id, :name, :make, :model, :rego, :state, :start_odo)
+    params.require(:car).permit(:name, :make, :model, :rego, :state, :start_odo, :user_id, :fleet)
   end
 end
