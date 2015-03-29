@@ -24,6 +24,7 @@ class User < ActiveRecord::Base
 
   has_many :trips
   has_many :cars, through: :trips
+  has_many :cars
   
   validates :login, presence: true, uniqueness: true
 end

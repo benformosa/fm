@@ -1,17 +1,18 @@
 class CarsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_car, only: [:show, :edit, :update, :destroy]
 
   def index
     @cars = Car.all
   end
-  
+
   def new
     @car = Car.new
-    authorize @car, :modify?
   end
-  
+
   def create
     @car = Car.new(car_params)
+    @car[:user_id] = current_user.id
     authorize @car, :modify?
     if(@car.save)
       redirect_to :action => :index
@@ -19,18 +20,15 @@ class CarsController < ApplicationController
       render :action => :new
     end
   end
-  
+
   def show
-    @car = Car.find(car_params[:id])
   end
 
   def edit
-    @car = Car.find(car_params[:id])
     authorize @car, :modify?
   end
 
   def update
-    @car = Car.find(car_params[:id])
     authorize @car, :modify?
     if @car.update_attributes(car_params)
       redirect_to :action => :index
@@ -56,10 +54,14 @@ class CarsController < ApplicationController
       @car = Car.all
     end
   end
-  
+
   private
-    def car_params
-      params.require(:car).permit(:id, :name, :make, :model, :rego, :state, :start_odo)
-      #params.permit(:car, :id, :name, :make, :model, :rego, :state, :start_odo)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_car
+    @car = Car.find(params[:id])
+  end
+
+  def car_params
+    params.require(:car).permit(:name, :make, :model, :rego, :state, :start_odo, :user_id, :fleet)
+  end
 end

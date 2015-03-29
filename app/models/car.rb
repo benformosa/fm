@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 class Car < ActiveRecord::Base
+  belongs_to :user
   has_many :trips
   has_many :users, through: :trips
   

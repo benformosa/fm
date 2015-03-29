@@ -7,6 +7,6 @@ class CarPolicy
   end
 
   def modify?
-    user.is_admin
+    user.is_admin or car.user_id == user.id
   end
 end
