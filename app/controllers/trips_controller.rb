@@ -1,6 +1,8 @@
 class TripsController < ApplicationController
   before_action :authenticate_user!
 
+  autocomplete :trip, :location, :full => true
+
   def index
     if params[:car]
       @trips = Trip.where(car_id: params[:car])

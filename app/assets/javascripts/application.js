@@ -12,6 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui.min
+//= require autocomplete-rails
 //= require turbolinks
 //= require bootstrap-datepicker/core
 //= require all.js

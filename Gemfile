@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'rails4-autocomplete'
+
 # for rails.vim
 gem 'erubis', '~> 2.7.0'
 
@@ -63,3 +65,4 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
