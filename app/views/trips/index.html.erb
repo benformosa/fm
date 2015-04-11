@@ -1,16 +1,14 @@
 <h1><%= link_to "Trips", trips_path %></h1>
 <table>
   <tr>
-    <th>Trip</th>
     <th>Car</th>
     <th>Date</th>
-    <th>Driver</th>
-    <th>Last trip</th>
-    <th>Start Odometer</th>
-    <th>End Odometer</th>
+    <th class=numeric>Start Odometer</th>
+    <th class=numeric>End Odometer</th>
     <th>Start Location</th>
     <th>End Location</th>
-    <th>Distance</th>
+    <th class=numeric>Distance</th>
+    <th>Driver</th>
   <tr>
 <% @trips.each do |trip| %>
 <% # if this is the first trip %>
@@ -24,24 +22,22 @@
   <% end %>
 
   <tr>
-    <td><%= trip.id %></td>
     <td><%= link_to trip.car.name, trips_path(:car => trip.car) %></td>
     <td><%= trip.date.strftime('%d/%m/%Y') %></td>
-    <td><%= trip.user.name %></td>
-    <td><%= last_id %></td>
     <% if first_trip %>
-      <td>-</td>
+      <td class=numeric>-</td>
     <% else %>
-      <td><%= Trip.find(last_id).odo %>
+      <td class=numeric><%= Trip.find(last_id).odo %>
     <% end %>
-    <td><%= trip.odo %></td>
+    <td class=numeric><%= trip.odo %></td>
     <% if first_trip %>
       <td>-</td>
     <% else %>
       <td><%= Trip.find(last_id).location %>
     <% end %>
     <td><%= trip.location %>
-    <td><%= distance %></td>
+    <td class=numeric><%= distance %></td>
+    <td><%= trip.user.name %></td>
 <% end %>
 </table>
 <% if @trips.size == 0 %>

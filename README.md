@@ -1,42 +1,31 @@
-fml
-==================
+#fml
 
-fleet-manager-lite
-Intended to demonstrate the fleet-manager project is feasible using the selected technology.
+fleet-manager
+A Ruby on Rails web app for tracking mileage of a fleet of company cars.
+Active Directory\LDAP backed authentication.
 
-Goals
------
-* Create a rails app
-* Input and view data for one driver
-* no authentication
-* no css etc
+##To do
+* Cars can only be edited by owners or admins
+* Car show action
+* Disable Car
+* Archive view showing disabled cars
+* Reporting
+* Car lifecycle: when added, when to retire, when to service
+* Personal miles
+* Personal mile costs
+* Trips ending at garage
 
-Models
-------
-* Cars
-* Trips
+##Features
+* Track end location of trips
+* Auto-complete when typing locations
+* Edit cars
+* Cars have owners
+* Any user can add a car
 
-Relations
----------
-* Trips may have a previous trip
-* Trips have a driver
-* Trips have a car
-* Cars have many trips
+##Dependencies
+* devise and devise_ldap_authenticatable for LDAP authentication
+* rail-4-autocomplete
+* pundit for authorisation
 
-Views
------
-| path | action |
-|------|--------|
-| / | list cars |
-| /cars/:car_id| list all trips for :car_id |
-| /trips | list all trips |
-| /trips?car=car_id | list all trips for :car_id |
-| /trip/new | log a new trip. Can't do this, must specify a car |
-| /trips/new?car=car_id | log new trip for :car_id |
-
-Installing
-==========
-Tested using Debian 7.4 and rails 4.0.3; installed by gem
-To create the initial package, I ran `rails new fml`
-I modified `fml/Gemfile` and uncommented therubyracer
-Then I ran `bundle update`
+##Installing
+Tested using Ubuntu 14.04 and rails 4.0.3; installed by gem

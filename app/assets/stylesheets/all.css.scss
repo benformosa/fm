@@ -1,6 +1,7 @@
 $dark: #333333;
 $mid: #999999;
-$light: #F6F6F6;
+$light: #CCCCCC;
+$background: #F6F6F6;
 $bright: #BF2726;
 
 @mixin rounded-corners($radius) {
@@ -19,7 +20,7 @@ $bright: #BF2726;
 }
 
 body {
-  background-color: $light;
+  background-color: $background;
   font-family: verdana;
   font-size: 16px;
 }
@@ -38,8 +39,15 @@ a {
 }
 
 table, td, th { 
-  vertical-align: middle; 
+  border-collapse: collapse;
   border: none;
+  padding: 5px;
+  text-align: left;
+  vertical-align: middle; 
+
+  .numeric {
+    text-align: right;
+  }
 }
 
 th { 
@@ -47,14 +55,22 @@ th {
   border-bottom: 1px solid $mid; 
 }
 
+tr:nth-child(even) {
+  background: $light
+}
+
 input {
   border: 1px solid $mid;
   padding: 2px;
   @include rounded-corners(5px);
+
+  &[readonly=''] {
+    background: $light;
+  }
 }
 
 .button, input[type="submit"] {
-  color: $light;
+  color: $background;
   background-color: $dark;
   display: inline-block;
   @include hover;
@@ -71,16 +87,17 @@ input {
 #header, footer {
   background-color: $dark;
   padding: 4px 50px;
-  border-bottom: solid 5px $mid;
+  border-bottom: solid 1vh $mid;
   min-height: 10vh;
 
   h1 {
-    color: $light;
+    color: $background;
   }
 }
 
 footer {
   min-height: 5vh;
+  border-top: solid 2vh $background;
 
   a {
     color: lighten($bright, 10%)
