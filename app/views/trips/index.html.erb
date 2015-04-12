@@ -8,6 +8,7 @@
     <th>Start Location</th>
     <th>End Location</th>
     <th>Garaged</th>
+    <th>Personal</th>
     <th class=numeric>Distance</th>
     <th>Driver</th>
   <tr>
@@ -28,16 +29,21 @@
     <% if first_trip %>
       <td class=numeric>-</td>
     <% else %>
-      <td class=numeric><%= Trip.find(last_id).odo %>
+      <td class=numeric><%= Trip.find(last_id).odo %></td>
     <% end %>
     <td class=numeric><%= trip.odo %></td>
     <% if first_trip %>
       <td>-</td>
     <% else %>
-      <td><%= Trip.find(last_id).location %>
+      <td><%= Trip.find(last_id).location %></td>
     <% end %>
-    <td><%= trip.location %>
+    <td><%= trip.location %></td>
     <% if trip.garage %>
+      <td>✓</td>
+    <% else %>
+      <td></td>
+    <% end %>
+    <% if trip.personal %>
       <td>✓</td>
     <% else %>
       <td></td>

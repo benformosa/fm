@@ -3,7 +3,7 @@ class TripPolicy < ApplicationPolicy
 
   def initialize(user, trip)
     @user = user
-    @car = car
+    @trip = trip
   end
 
   # A user may update a trip if it is the most recent trip for that car and if they logged that trip.

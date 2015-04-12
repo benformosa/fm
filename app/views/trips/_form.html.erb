@@ -29,16 +29,19 @@
     <input type="text" readonly value="<%= Trip.where(car_id: @trip.car).last.location %>" /><br />
     
     <%= f.label :location, "End location" %><br />
-    <%= f.autocomplete_field :location, autocomplete_trip_location_trips_path %>
-
-    <%= f.label :garage, "Garaged" %>
-    <%= f.check_box :garage, {:checked => false} %><br />
+    <%= f.autocomplete_field :location, autocomplete_trip_location_trips_path %><br />
     
     <label>Start odometer reading</label><br />
     <input type="text" readonly value="<%= Trip.where(car_id: @trip.car).last.odo %>" /><br />
     
     <%= f.label :odo, "End odometer reading" %><br />
     <%= f.text_field :odo %><br />
+
+    <%= f.label :garage, "Garaged" %>
+    <%= f.check_box :garage, {:checked => false} %><br />
+
+    <%= f.label :personal, "Personal" %>
+    <%= f.check_box :personal, {:checked => false} %><br />
   </div>
 
   <div class="actions">
