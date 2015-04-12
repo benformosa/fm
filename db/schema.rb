@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150329012452) do
+<<<<<<< Updated upstream
+ActiveRecord::Schema.define(version: 20150412010847) do
+=======
+ActiveRecord::Schema.define(version: 20150329043242) do
+>>>>>>> Stashed changes
 
   create_table "cars", force: true do |t|
     t.integer  "start_odo"
@@ -24,6 +28,7 @@ ActiveRecord::Schema.define(version: 20150329012452) do
     t.string   "state"
     t.integer  "user_id"
     t.boolean  "fleet",      default: false, null: false
+    t.boolean  "enable",     default: true,  null: false
   end
 
   add_index "cars", ["user_id"], name: "index_cars_on_user_id"
@@ -37,6 +42,7 @@ ActiveRecord::Schema.define(version: 20150329012452) do
     t.integer  "user_id"
     t.date     "date"
     t.string   "location"
+    t.boolean  "garage",     default: false, null: false
   end
 
   add_index "trips", ["car_id"], name: "index_trips_on_car_id"

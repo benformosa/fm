@@ -7,6 +7,7 @@
     <th class=numeric>End Odometer</th>
     <th>Start Location</th>
     <th>End Location</th>
+    <th>Garaged</th>
     <th class=numeric>Distance</th>
     <th>Driver</th>
   <tr>
@@ -36,6 +37,11 @@
       <td><%= Trip.find(last_id).location %>
     <% end %>
     <td><%= trip.location %>
+    <% if trip.garage %>
+      <td>✓</td>
+    <% else %>
+      <td></td>
+    <% end %>
     <td class=numeric><%= distance %></td>
     <td><%= trip.user.name %></td>
 <% end %>

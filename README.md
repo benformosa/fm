@@ -1,8 +1,6 @@
 #fml
 
-fleet-manager
 A Ruby on Rails web app for tracking mileage of a fleet of company cars.
-Active Directory\LDAP backed authentication.
 
 ##To do
 * Cars can only be edited by owners or admins
@@ -10,17 +8,23 @@ Active Directory\LDAP backed authentication.
 * Disable Car
 * Archive view showing disabled cars
 * Reporting
-* Car lifecycle: when added, when to retire, when to service
+* Car life-cycle
+  * when added to fleet
+  * when to retire
+  * when to service
 * Personal miles
 * Personal mile costs
-* Trips ending at garage
+  * Global
+  * Per car
 
 ##Features
+* Active Directory\LDAP backed authentication.
 * Track end location of trips
 * Auto-complete when typing locations
 * Edit cars
 * Cars have owners
 * Any user can add a car
+* Track trips ending at garage
 
 ##Dependencies
 * devise and devise_ldap_authenticatable for LDAP authentication
