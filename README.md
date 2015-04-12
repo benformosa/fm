@@ -3,10 +3,10 @@
 A Ruby on Rails web app for tracking mileage of a fleet of company cars.
 
 ##Bugs
-* Adding a car with a 0 odometer does not create an initial trip, which will cause the new trip form to fail
-* No way to add a starting location for a car
+* No way to add a starting location for a car - currently hardcoded
 
 ##To do
+* Hide initial trips in all views
 * Cars can only be edited by owners or admins
 * Car show action
 * Disable Car
