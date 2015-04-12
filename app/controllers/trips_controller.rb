@@ -22,7 +22,7 @@ class TripsController < ApplicationController
     car = Car.find(trip_params[:car])
     @trip = Trip.new(:odo => odo, :location => location, :last_trip => last_trip, :car => car, :user => current_user, :date => trip_params[:date])
     if(@trip.save)
-      redirect_to :action => :index
+      redirect_to :action => :index, :car => @trip.car
     else
       render :action => :new
     end
