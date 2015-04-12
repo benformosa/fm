@@ -16,10 +16,8 @@
 <% # if this is the first trip %>
   <% first_trip = Trip.where(car_id: trip.car).order(:id).first.id == trip.id %>
   <% if first_trip %>
-    <% distance = trip.odo %>
     <% last_id = "-" %>
   <% else %>
-    <% distance = trip.odo - trip.last_trip.odo %>
     <% last_id = trip.last_trip.id %>
   <% end %>
 
@@ -48,7 +46,7 @@
     <% else %>
       <td></td>
     <% end %>
-    <td class=numeric><%= distance %></td>
+    <td class=numeric><%= trip.distance %></td>
     <td><%= trip.user.name %></td>
 <% end %>
 </table>

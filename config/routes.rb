@@ -9,6 +9,9 @@ Fml::Application.routes.draw do
 
   resources :trips
 
-  get 'reports/tripspermonth/(:id)', :controller => 'cars', :action => 'tripspermonth'
-  get 'reports/kmpermonth/(:id)', :controller => 'cars', :action => 'kmpermonth'
+  get 'reports/', :controller => 'reports', :action => 'index'
+  get 'reports/distanceperdriver', :controller => 'reports', :action => 'distanceperdriver'
+  get 'reports/personalcostperdriver', :controller => 'reports', :action => 'personalcostperdriver'
+  get 'reports/distancepercar', :controller => 'reports', :action => 'distancepercar'
+  get 'reports/garagerspercar', :controller => 'reports', :action => 'garagerspercar'
 end

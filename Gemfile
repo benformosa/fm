@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails4-autocomplete'
 
+gem 'statistics'
+
 # for rails.vim
 gem 'erubis', '~> 2.7.0'
 

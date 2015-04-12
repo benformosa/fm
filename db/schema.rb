@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150412012818) do
+ActiveRecord::Schema.define(version: 20150412044854) do
 
   create_table "cars", force: true do |t|
     t.integer  "start_odo"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20150412012818) do
     t.string   "location"
     t.boolean  "garage",     default: false, null: false
     t.boolean  "personal",   default: false, null: false
+    t.integer  "distance"
   end
 
   add_index "trips", ["car_id"], name: "index_trips_on_car_id"
