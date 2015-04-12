@@ -1,0 +1,15 @@
+<h1>Garaging drivers per car</h1>
+<table>
+  <tr>
+    <th>Car</th>
+    <th>Driver</th>
+  </tr>
+<% Trip.where(garage: true).group(:car_id).each do |car| %>
+  <% Trip.where(garage: true, car_id: car.car_id).group(:user_id).each do |user| %>
+    <tr>
+      <td><%= Car.find(car.car_id).name %></td>
+      <td><%= User.find(user.user_id).name %></td>
+    </tr>
+  <% end %>
+<% end %>
+</table>
