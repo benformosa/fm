@@ -4,12 +4,10 @@
     <th>Car</th>
     <th>Driver</th>
   </tr>
-<% Trip.where(garage: true).group(:car_id).each do |car| %>
-  <% Trip.where(garage: true, car_id: car.car_id).group(:user_id).each do |user| %>
-    <tr>
-      <td><%= Car.find(car.car_id).name %></td>
-      <td><%= User.find(user.user_id).name %></td>
-    </tr>
-  <% end %>
+<% Trip.where(garage: true).group(:user_id).group(:car_id).order(:car_id).each do |object| %>
+  <tr>
+    <td><%= Car.find(object.car_id).name %></td>
+    <td><%= User.find(object.user_id).name %></td>
+  </tr>
 <% end %>
 </table>

@@ -1,5 +1,3 @@
-<% @cost = 0.4 %>
-<% @currency_symbol = '$' %>
 <h1>Personal distance billing</h1>
 <table>
   <tr>
@@ -10,17 +8,17 @@
 <% User.all.each do |object| %>
   <% personal_distance = Trip.get_stat(:personal_distance, :user_id => object.id) %>
   <% if personal_distance > 0 %>
-  <tr>
-    <td><%= object.name %></td>
-    <td class=numeric><%= personal_distance %></td>
-    <td class=numeric><%= @currency_symbol %><%= @cost * personal_distance %></td>
-  </tr>
+    <tr>
+      <td><%= object.name %></td>
+      <td class=numeric><%= personal_distance %></td>
+      <td class=numeric><%= number_to_currency(Settings.globalcost * personal_distance) %></td>
+    </tr>
   <% end %>
 <% end %>
 <tr class=total>
     <td>All personal distance</td>
     <td class=numeric><%= Trip.get_stat(:personal_distance) %></td>
-    <td class=numeric><%= @currency_symbol %><%= @cost * Trip.get_stat(:personal_distance) %></td>
+    <td class=numeric><%= number_to_currency(Settings.globalcost * Trip.get_stat(:personal_distance)) %></td>
   </tr>
 </table>
 

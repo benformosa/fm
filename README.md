@@ -16,8 +16,7 @@ A Ruby on Rails web app for tracking mileage of a fleet of company cars.
   * when to retire
   * when to service
 * Personal mile costs
-  * Global
-  * Per car
+  * Per car ?
 
 ##Features
 * Active Directory\LDAP backed authentication.
@@ -32,8 +31,10 @@ A Ruby on Rails web app for tracking mileage of a fleet of company cars.
 
 ##Dependencies
 * devise and devise_ldap_authenticatable for LDAP authentication
-* rail-4-autocomplete
+* rail-4-autocomplete - my fork
 * pundit for authorisation
+* rails-settings-cached
+* statistics
 
 ##Installing
 Tested using Ubuntu 14.04 and rails 4.0.3; installed by gem
