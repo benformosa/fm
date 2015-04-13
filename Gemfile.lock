@@ -69,6 +69,13 @@ GEM
       devise (>= 3.0)
       net-ldap (>= 0.3.1, < 0.6.0)
     diff-lcs (1.2.5)
+    dossier (2.12.2)
+      actionmailer (>= 3.2)
+      actionpack (>= 3.2)
+      activesupport (>= 3.2)
+      arel (>= 3.0)
+      haml (>= 3.1)
+      railties (>= 3.2)
     erubis (2.7.0)
     execjs (2.5.2)
     ffi (1.9.8)
@@ -244,6 +251,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   devise (~> 3.2.3)
   devise_ldap_authenticatable
+  dossier
   erubis (~> 2.7.0)
   guard
   guard-rspec (~> 4.2.7)

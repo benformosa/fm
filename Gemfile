@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem 'dossier'
+
 # Using my fork to summarise duplicate results
 gem 'rails4-autocomplete', :git => 'https://github.com/benformosa/rails4-autocomplete.git'
 
