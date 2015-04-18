@@ -13,5 +13,4 @@ Fml::Application.routes.draw do
   get 'reports/distanceperdriver', :controller => 'reports', :action => 'distanceperdriver'
   get 'reports/personalcostperdriver', :controller => 'reports', :action => 'personalcostperdriver'
   get 'reports/distancepercar', :controller => 'reports', :action => 'distancepercar'
-  get 'reports/garagerspercar', :controller => 'reports', :action => 'garagerspercar'
 end

@@ -10,7 +10,4 @@ class ReportsController < ApplicationController
 
   def distancepercar
   end
-
-  def garagersbycar
-  end
 end
