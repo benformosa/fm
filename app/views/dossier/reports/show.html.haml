@@ -10,14 +10,13 @@
       - report.results.headers.each do |header|
         %th= report.format_header(header)
   %tbody
-    - report.results.body.each do |row|
-      %tr
-        - row.each do |value|
-          %td= value
+    - report.results.body.each_with_index do |row, index|
+      - if index == report.results.body.length - 1
+        - @class = "total"
 
-  - if report.results.footers.any?
-    %tfoot
-      - report.results.footers.each do |row|
-        %tr
-          - row.each do |value|
-            %th= value
+      %tr{:class => @class}
+        - row.each_with_index do |value, index|
+          - if index == 0
+            %td= value
+          - else
+            %td.numeric= value

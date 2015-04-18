@@ -48,6 +48,10 @@ table, td, th {
   .numeric {
     text-align: right;
   }
+
+  .total {
+    color: $bright;
+  }
 }
 
 th { 
