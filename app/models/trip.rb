@@ -16,16 +16,6 @@ class Trip < ActiveRecord::Base
 
   before_save :set_distance
 
-  define_statistic :trip_count, :count => :all
-  define_statistic :total_distance, :sum => :all, :column_name => 'distance'
-  define_statistic :personal_distance, :sum => :all, :column_name => 'distance', :conditions => "personal = 't'"
-  define_calculated_statistic :business_distance do
-    defined_stats(:total_distance) - defined_stats(:personal_distance)
-  end
-
-  filter_all_stats_on(:car_id, 'car_id = ?')
-  filter_all_stats_on(:user_id, 'user_id = ?')
-
   # Calculate the trip's distance. If this is the first trip for this car, return 0
   def get_distance
     if last_trip.nil?
