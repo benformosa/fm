@@ -13,7 +13,7 @@
       <% image = "car.png" %>
     <% end %>
   <% end %>
-  <li><span><%= link_to trips_path(:car => car) do %><%= image_tag image, size: "50x50", alt: car.name, class: "car_image" %></span>
+  <li><span><%= link_to car_path(car.id) do %><%= image_tag image, size: "50x50", alt: car.name, class: "car_image" %></span>
     <span><%= car.name %><% end %></span>
     <%= link_to "Log trip", new_trip_path(:car => car) %>
     <% if current_user.is_admin or car.user_id == current_user.id %>

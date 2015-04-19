@@ -1,11 +1,35 @@
+<h1><%= @car.name %></h1>
 <table>
   <tr>
-    <th>Car</th>
+    <td>Make</td>
+    <td><%= @car.make %></td>
   </tr>
   <tr>
-    <td><%= @car.name %></td>
-    <td><%= @car.id %></td>
-    <td><%= @car.start_odo %></td>
-    <td><%= @car.user_id %></td>
+    <td>Model</td>
+    <td><%= @car.model %></td>
+  </tr>
+  <tr>
+    <td>Rego</td>
+    <td><%= @car.rego %></td>
+  </tr>
+  <tr>
+    <td>State</td>
+    <td><%= @car.state %></td>
+  </tr>
+  <tr>
+  <% if @car.user_id != 0 %>
+    <td>Owner</td>
+    <td><%= User.find(@car.user_id).name %></td>
+  <% else %>
+    <td>Fleet car</td>
+    <td>✓</td>
+  <% end %>
+  </tr>
+  <tr>
+    <td>Odometer</td>
+    <td><%= Trip.where(car_id: @car.id).last.odo %></td>
   </tr>
 </table>
+<br />
+<%= link_to "Show trips for " + @car.name, trips_path(:car => @car) %><br />
+<%= link_to "Log new trip for " + @car.name, new_trip_path(:car => @car), class: "button" %>

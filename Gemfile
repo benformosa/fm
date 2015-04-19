@@ -12,8 +12,8 @@ gem "rails-settings-ui"
 gem 'erubis', '~> 2.7.0'
 
 # Use devise for authentication
-gem 'devise', '~> 3.2.3'
-gem 'devise_ldap_authenticatable'
+gem 'devise', '~> 3.4.1'
+gem "devise_ldap_authenticatable", :git => "git://github.com/cschiewek/devise_ldap_authenticatable.git"
 
 # Use pundit for authorisation
 gem 'pundit'
