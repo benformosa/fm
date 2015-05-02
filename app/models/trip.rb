@@ -16,6 +16,11 @@ class Trip < ActiveRecord::Base
 
   before_save :set_distance
 
+  # Is this the car's initial trip?
+  def initial_trip?
+    Trip.where(car_id: car).empty? or odo.nil? or last_trip.nil?
+  end
+
   # Calculate the trip's distance. If this is the first trip for this car, return 0
   def get_distance
     if last_trip.nil?
@@ -31,7 +36,7 @@ class Trip < ActiveRecord::Base
 
   # Validate that the odometer reading has gone up and that the date is not earlier, except for the initial trip
   def greater_than_last_trip
-    unless Trip.where(car_id: car).empty? or odo.nil? or last_trip.nil?
+    unless initial_trip?
       if last_trip.odo >= odo
         errors.add(:base, "Odometer reading must be greater than the reading from the last trip")
       end

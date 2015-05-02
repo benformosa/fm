@@ -13,41 +13,29 @@
     <th>Driver</th>
   <tr>
 <% @trips.each do |trip| %>
-<% # if this is the first trip %>
-  <% first_trip = Trip.where(car_id: trip.car).order(:id).first.id == trip.id %>
-  <% if first_trip %>
-    <% last_id = "-" %>
-  <% else %>
-    <% last_id = trip.last_trip.id %>
-  <% end %>
+  <% unless trip.initial_trip? %>
 
-  <tr>
-    <td><%= link_to trip.car.name, trips_path(:car => trip.car) %></td>
-    <td><%= trip.date.strftime('%d/%m/%Y') %></td>
-    <% if first_trip %>
-      <td class=numeric>-</td>
-    <% else %>
+    <% last_id = trip.last_trip.id %>
+    <tr>
+      <td><%= link_to trip.car.name, trips_path(:car => trip.car) %></td>
+      <td><%= trip.date.strftime('%d/%m/%Y') %></td>
       <td class=numeric><%= Trip.find(last_id).odo %></td>
-    <% end %>
-    <td class=numeric><%= trip.odo %></td>
-    <% if first_trip %>
-      <td>-</td>
-    <% else %>
+      <td class=numeric><%= trip.odo %></td>
       <td><%= Trip.find(last_id).location %></td>
-    <% end %>
-    <td><%= trip.location %></td>
-    <% if trip.garage %>
-      <td>✓</td>
-    <% else %>
-      <td></td>
-    <% end %>
-    <% if trip.personal %>
-      <td>✓</td>
-    <% else %>
-      <td></td>
-    <% end %>
-    <td class=numeric><%= trip.distance %></td>
-    <td><%= trip.user.name %></td>
+      <td><%= trip.location %></td>
+      <% if trip.garage %>
+        <td>✓</td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <% if trip.personal %>
+        <td>✓</td>
+      <% else %>
+        <td></td>
+      <% end %>
+      <td class=numeric><%= trip.distance %></td>
+      <td><%= trip.user.name %></td>
+  <% end %>
 <% end %>
 </table>
 <% if @trips.size == 0 %>

@@ -6,11 +6,7 @@ A Ruby on Rails web app for tracking mileage of a fleet of company cars.
 * No way to add a starting location for a car - currently hardcoded
 
 ##To do
-* Hide initial trips in all views
 * Cars can only be edited by owners or admins
-* Car show action
-* Disable Car
-* Archive view showing disabled cars
 * Car life-cycle
   * when added to fleet
   * when to retire
@@ -20,6 +16,7 @@ A Ruby on Rails web app for tracking mileage of a fleet of company cars.
 * Active Directory\LDAP backed authentication.
 * Track end location of trips
 * Auto-complete when typing locations
+* Cars can be marked as fleet cars
 * Edit cars
 * Cars have owners
 * Any user can add a car
