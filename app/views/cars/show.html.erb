@@ -17,13 +17,12 @@
     <td><%= @car.state %></td>
   </tr>
   <tr>
-  <% if @car.user_id != 0 %>
     <td>Owner</td>
     <td><%= User.find(@car.user_id).name %></td>
-  <% else %>
+  </tr>
+  <tr>
     <td>Fleet car</td>
     <td>✓</td>
-  <% end %>
   </tr>
   <tr>
     <td>Odometer</td>
