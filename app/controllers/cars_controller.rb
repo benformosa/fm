@@ -3,7 +3,11 @@ class CarsController < ApplicationController
   before_action :set_car, only: [:show, :edit, :update, :destroy]
 
   def index
-    @cars = Car.all
+    if params[:enable]
+      @cars = Car.where(enable: false)
+    else
+      @cars = Car.where(enable: true)
+    end
   end
 
   def new
@@ -62,6 +66,6 @@ class CarsController < ApplicationController
   end
 
   def car_params
-    params.require(:car).permit(:name, :make, :model, :rego, :state, :start_odo, :user_id, :fleet)
+    params.require(:car).permit(:name, :make, :model, :rego, :state, :start_odo, :user_id, :fleet, :enable)
   end
 end

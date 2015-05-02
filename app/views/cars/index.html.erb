@@ -16,9 +16,6 @@
   <li><span><%= link_to car_path(car.id) do %><%= image_tag image, size: "50x50", alt: car.name, class: "car_image" %></span>
     <span><%= car.name %><% end %></span>
     <%= link_to "Log trip", new_trip_path(:car => car) %>
-    <% if current_user.is_admin or car.user_id == current_user.id %>
-      <%= link_to "Edit car", edit_car_path(car) %>
-    <% end %>
 <% end %>
 </ul><br />
 </div>
@@ -26,5 +23,10 @@
   <em>No cars found</em><br />
 <% end %>
 <div style="clear:both">
-<%= link_to "Add new car", new_car_path, class: "button" %>
+<%= link_to "Add new car", new_car_path, class: "button" %><br />
+<% if params[:enable] %>
+  <%= link_to "Show active cars", cars_path %>
+<% else %>
+  <%= link_to "Show inactive cars", cars_path(:enable => false) %>
+<% end %>
 </div>

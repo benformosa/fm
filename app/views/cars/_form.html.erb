@@ -15,9 +15,14 @@
     <%= f.label :name %><br />
     <%= f.text_field :name %><br />
 
+    <% if current_user.is_admin or car.user_id == current_user.id %>
+      <%= f.label :enable %><br />
+      <%= f.check_box :enable %><br />
+    <% end %>
+
     <% if current_user.is_admin? %>
       <%= f.label :fleet %><br />
-      <%= f.check_box :fleet, {:checked => true} %><br />
+      <%= f.check_box :fleet %><br />
     <% end %>
 
     <%= f.label :make %><br />
