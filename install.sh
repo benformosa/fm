@@ -105,6 +105,6 @@ bundle install --deployment
 bundle exec rake db:setup
 echo "Fml::Application.config.secret_key_base = '$(bundle exec rake secret)'" | tee --append config/initializers/secret_token.rb > /dev/null
 
-echo "\n run \`/etc/init.d/fml start\` to start app"
+echo $'\nrun \`/etc/init.d/fml start\` to start app'
 
 popd
