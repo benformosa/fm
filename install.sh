@@ -102,9 +102,11 @@ sudo mkdir /var/apps
 sudo ln -s ~/fml /var/apps
 cd fml
 bundle install --deployment
-bundle exec rake db:setup
 echo "Fml::Application.config.secret_key_base = '$(bundle exec rake secret)'" | tee --append config/initializers/secret_token.rb > /dev/null
 
-echo "\n run \`/etc/init.d/fml start\` to start app"
+echo
+echo $'Edit ~/fml/config/ldap.yml with your LDAP server details'
+echo $'Then run `bundle exec rake db:setup` to create database'
+echo $'run `/etc/init.d/fml start` to start app'
 
 popd
