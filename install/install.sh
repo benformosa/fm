@@ -20,7 +20,7 @@ sudo chmod 600 /etc/ssl/certs/self-signed.pem
 sudo chmod 600 /etc/ssl/private/self-signed.key
 
 # Download init script
-wget -q https://raw.githubusercontent.com/benformosa/fml/master/install/initd-fml -O /etc/init.d/fml
+sudo wget -q https://raw.githubusercontent.com/benformosa/fml/master/install/initd-fml -O /etc/init.d/fml
 sudo chmod +x /etc/init.d/fml
 
 sudo wget -q https://raw.githubusercontent.com/benformosa/fml/master/install/etc-fml.sh -O /etc/fml.sh
