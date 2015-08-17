@@ -5,8 +5,6 @@
 
 # Create user to run application as
 sudo useradd --user-group fml --home-dir /srv/rails/fml --shell /bin/bash --groups sudo
-echo 'Set password for user fml'
-sudo passwd fml
 
 # Create application directory
 sudo mkdir -p /srv/rails/fml
