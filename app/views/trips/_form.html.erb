@@ -1,13 +1,15 @@
 <% if params[:car] %>
   <% @trip.car = Car.find(params[:car]) %>
+<% elsif params[:trip] %>
+  <% @trip.car = Car.find(params[:trip][:car]) %>
 <% end %>
 
-<h3>Car: <%= @trip.car.name %></h2>
+<h3>Car: <%= @trip.car.name %></h3>
 
 <%= form_for @trip do |f| %>
   <% if @trip.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@trip.errors.count, "error") %> prohibited this post from being saved:</h2>
+      <h2><%= pluralize(@trip.errors.count, "error") %> prohibited this trip from being saved:</h2>
 
       <ul>
       <% @trip.errors.full_messages.each do |msg| %>

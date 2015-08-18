@@ -16,11 +16,7 @@ class TripsController < ApplicationController
   end
   
   def create
-    odo = trip_params[:odo]
-    location = trip_params[:location]
-    last_trip = Trip.find(trip_params[:last_trip])
-    car = Car.find(trip_params[:car])
-    @trip = Trip.new(:odo => odo, :location => location, :last_trip => last_trip, :car => car, :user => current_user, :date => trip_params[:date])
+    @trip = Trip.new(trip_params[:trip])
     if(@trip.save)
       redirect_to :action => :index, :car => @trip.car
     else

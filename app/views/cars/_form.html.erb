@@ -1,7 +1,7 @@
 <%= form_for @car do |f| %>
   <% if @car.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@car.errors.count, "error") %> prohibited this post from being saved:</h2>
+      <h2><%= pluralize(@car.errors.count, "error") %> prohibited this car from being saved:</h2>
 
       <ul>
       <% @car.errors.full_messages.each do |msg| %>
@@ -15,7 +15,8 @@
     <%= f.label :name %><br />
     <%= f.text_field :name %><br />
 
-    <% if current_user.is_admin or car.user_id == current_user.id %>
+    <%# If this is not a new car (persisted?) and you are the cars owner or an admin %>
+    <% if @car.persisted? && (current_user.is_admin || @car.user_id == current_user.id) %>
       <%= f.label :enable %><br />
       <%= f.check_box :enable %><br />
     <% end %>
@@ -39,6 +40,10 @@
 
     <%= f.label :start_odo, "Initial Odometer reading" %><br />
     <%= f.text_field :start_odo %><br />
+
+    <%= f.label :initial_location, "Initial location" %><br />
+    <%= f.autocomplete_field :initial_location, autocomplete_trip_location_trips_path %><br />
+
   </div>
  
   <div class="actions">
