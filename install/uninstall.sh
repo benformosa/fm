@@ -6,12 +6,13 @@ function uninstall {
   # Stop application
   sudo /etc/init.d/fml stop
 
-  echo "Backup database (Size $(du -h /srv/rails/fml/db/production.sqlite3 | cut -f1)) to $(echo ~/$BACKUPFILE) ?"
-  select yn in "Yes" "No" "Cancel uninstall"; do
+  echo "Backup database (Size $(du -h /srv/rails/fml/db/production.sqlite3 | cut -f1)) to $(echo ~/$BACKUPFILE) ?
+  Select Cancel to exit the uninstaller."
+  select yn in "Yes" "No" "Cancel"; do
       case $yn in
 	  Yes ) backup; break;;
 	  No ) break;;
-	  Cancel uninstall ) exit;;
+	  Cancel ) cancel; break;;
       esac
   done
 
@@ -25,9 +26,6 @@ function uninstall {
 
   # Remove application directory
   sudo rm -rf /srv/rails/fml
-  
-  # Remove installer script
-  sudo rm ~/fminstall.sh
 
   echo 'You may want to do the following to complete the uninstallation:
 `sudo apt-get remove ruby-dev zlib1g-dev libsqlite3-dev openssl git`
@@ -42,6 +40,11 @@ function backup {
   sudo cp /srv/rails/fml/db/production.sqlite3 ~/$BACKUPFILE
   sudo chown `whoami`:`whoami` ~/$BACKUPFILE
   echo "Database backed up to $(echo ~/$BACKUPFILE)"
+}
+
+function cancel {
+  sudo /etc/init.d/fml start
+  exit
 }
 
 echo "

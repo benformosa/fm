@@ -41,6 +41,9 @@ sudo chmod +x ~/fminstall.sh
 
 sudo ~/fminstall.sh
 
+# Clean up
+sudo rm ~/fminstall.sh
+
 # Set secret token
 echo "Fml::Application.config.secret_key_base = \"$(cd /srv/rails/fml && bundle exec rake secret)\"" | sudo tee /srv/rails/fml/config/initializers/secret_token.rb > /dev/null
 
