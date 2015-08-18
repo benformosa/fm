@@ -3,18 +3,18 @@
 BACKUPFILE=fml-production-backup_$(date +%s).sqlite3
 
 function uninstall {
-  # Stop application
-  sudo /etc/init.d/fml stop
-
   echo "Backup database (Size $(du -h /srv/rails/fml/db/production.sqlite3 | cut -f1)) to $(echo ~/$BACKUPFILE) ?
-  Select Cancel to exit the uninstaller."
+Select Cancel to exit the uninstaller."
   select yn in "Yes" "No" "Cancel"; do
       case $yn in
 	  Yes ) backup; break;;
 	  No ) break;;
-	  Cancel ) cancel; break;;
+	  Cancel ) exit;;
       esac
   done
+  
+  # Stop application
+  sudo /etc/init.d/fml stop
 
   # Remove self-signed certificate
   sudo rm /etc/ssl/certs/self-signed.pem
@@ -36,15 +36,13 @@ function uninstall {
 }
 
 function backup {
+  # Stop application
+  sudo /etc/init.d/fml stop
+  
   # Make copy of database
   sudo cp /srv/rails/fml/db/production.sqlite3 ~/$BACKUPFILE
   sudo chown `whoami`:`whoami` ~/$BACKUPFILE
   echo "Database backed up to $(echo ~/$BACKUPFILE)"
-}
-
-function cancel {
-  sudo /etc/init.d/fml start
-  exit
 }
 
 echo "
