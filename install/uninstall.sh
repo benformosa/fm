@@ -31,8 +31,7 @@ Select Cancel to exit the uninstaller."
 `sudo apt-get remove ruby-dev zlib1g-dev libsqlite3-dev openssl git`
 `sudo gem uninstall bundler`
 `sudo gem uninstall passenger`
-`sudo userdel fml`
-`sudo groupdel fml`'
+`sudo userdel fml`'
 }
 
 function backup {
