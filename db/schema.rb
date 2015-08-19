@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150412121156) do
+ActiveRecord::Schema.define(version: 20150517025251) do
 
   create_table "cars", force: true do |t|
     t.integer  "start_odo"
@@ -23,8 +23,9 @@ ActiveRecord::Schema.define(version: 20150412121156) do
     t.string   "rego"
     t.string   "state"
     t.integer  "user_id"
-    t.boolean  "fleet",      default: false, null: false
-    t.boolean  "enable",     default: true,  null: false
+    t.boolean  "fleet",            default: false, null: false
+    t.boolean  "enable",           default: true,  null: false
+    t.string   "initial_location"
   end
 
   add_index "cars", ["user_id"], name: "index_cars_on_user_id"
