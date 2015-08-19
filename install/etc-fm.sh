@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Name of app directory
-APP=fml
+APP=fm
 
 # Port to listen on
 PORT=443
@@ -16,4 +16,4 @@ SSL_CERT=/etc/ssl/certs/self-signed.pem
 SSL_KEY=/etc/ssl/private/self-signed.key
 
 # User to run as
-USER=fml
+USER=fm

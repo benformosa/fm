@@ -1,25 +1,25 @@
 #!/bin/bash
 ### BEGIN INIT INFO
-# Provides:          fml
+# Provides:          fm
 # Required-Start:    $all
 # Required-Stop:     $all
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
-# Short-Description: FML Rails web app
-# Description:       Enable FML service using Phusion Passenger.
+# Short-Description: Fleet Manager Rails web app
+# Description:       Enable Fleet Manager service using Phusion Passenger.
 #       Based on https://gist.github.com/naholyr/4275302
 ### END INIT INFO
 
 # Default values if config file missing
-APP=fml
+APP=fm
 PORT=443
 SSL=true
 SSL_CERT=/etc/ssl/certs/self-signed.pem
 SSL_KEY=/etc/ssl/private/self-signed.key
-USER=fml
+USER=fm
 
 # Get values from config file
-source /etc/fml.sh
+source /etc/fm.sh
 
 APPPATH="/srv/rails/$APP"
 PIDFILE="/var/run/$APP.pid"

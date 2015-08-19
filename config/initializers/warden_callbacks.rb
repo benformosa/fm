@@ -6,7 +6,7 @@ Warden::Manager.after_authentication do |user,auth,opts|
     group.downcase!
   end
 
-  if memberships.include?(Fml::Application.config.admin_group)
+  if memberships.include?(Fm::Application.config.admin_group)
     admin = true
   end
 

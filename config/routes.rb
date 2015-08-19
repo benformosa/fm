@@ -1,4 +1,4 @@
-Fml::Application.routes.draw do
+Fm::Application.routes.draw do
   devise_for :users
   root to: "cars#index"
   resources :cars

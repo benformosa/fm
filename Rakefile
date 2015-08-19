@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Fml::Application.load_tasks
+Fm::Application.load_tasks

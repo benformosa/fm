@@ -60,6 +60,7 @@ group :development, :test do
   gem 'capybara'
   gem 'guard'
   gem 'guard-rspec', '~> 4.2.7'
+  gem 'rename'
 end
 
 # Use ActiveModel has_secure_password

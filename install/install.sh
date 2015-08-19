@@ -1,14 +1,14 @@
 #!/bin/bash
 
-# Install FML application on Phusion Passenger
+# Install Fleet Manager application on Phusion Passenger
 # Tested on Debian 8.1
 
 # Create user to run application as
-sudo useradd --user-group fml --home-dir /srv/rails/fml --shell /bin/bash --groups sudo
+sudo useradd --user-group fm --home-dir /srv/rails/fm --shell /bin/bash --groups sudo
 
 # Create application directory
-sudo mkdir -p /srv/rails/fml
-sudo chown fml:fml /srv/rails/fml
+sudo mkdir -p /srv/rails/fm
+sudo chown fm:fm /srv/rails/fm
 
 # Install pre-requisite software
 sudo apt-get update
@@ -20,23 +20,23 @@ sudo chmod 600 /etc/ssl/certs/self-signed.pem
 sudo chmod 600 /etc/ssl/private/self-signed.key
 
 # Download init script
-sudo wget -q https://raw.githubusercontent.com/benformosa/fml/master/install/initd-fml -O /etc/init.d/fml
-sudo chmod +x /etc/init.d/fml
+sudo wget -q https://raw.githubusercontent.com/benformosa/fm/master/install/initd-fm -O /etc/init.d/fm
+sudo chmod +x /etc/init.d/fm
 
-sudo wget -q https://raw.githubusercontent.com/benformosa/fml/master/install/etc-fml.sh -O /etc/fml.sh
-sudo chmod +x /etc/fml.sh
+sudo wget -q https://raw.githubusercontent.com/benformosa/fm/master/install/etc-fm -O /etc/fm.sh
+sudo chmod +x /etc/fm.sh
 
 # Download the database setup script
-sudo wget -q https://raw.githubusercontent.com/benformosa/fml/master/install/setupdb.sh -O /srv/rails/fml/setupdb.sh
-sudo chown fml:fml /srv/rails/fml/setupdb.sh
-sudo chmod +x /srv/rails/fml/setupdb.sh
+sudo wget -q https://raw.githubusercontent.com/benformosa/fm/master/install/setupdb.sh -O /srv/rails/fm/setupdb.sh
+sudo chown fm:fm /srv/rails/fm/setupdb.sh
+sudo chmod +x /srv/rails/fm/setupdb.sh
 
 # Install required software with gem
 sudo gem install passenger --no-ri --no-rdoc
 sudo gem install bundler --no-ri --no-rdoc
 
-# Download script to run app install as user fml
-wget -q https://raw.githubusercontent.com/benformosa/fml/master/install/fminstall.sh -O ~/fminstall.sh
+# Download script to run app install as user fm
+wget -q https://raw.githubusercontent.com/benformosa/fm/master/install/fminstall.sh -O ~/fminstall.sh
 chmod +x ~/fminstall.sh
 
 sudo ~/fminstall.sh
@@ -45,9 +45,9 @@ sudo ~/fminstall.sh
 rm ~/fminstall.sh
 
 # Set secret token
-echo "Fml::Application.config.secret_key_base = \"$(cd /srv/rails/fml && bundle exec rake secret)\"" | sudo tee /srv/rails/fml/config/initializers/secret_token.rb > /dev/null
+echo "Fm::Application.config.secret_key_base = \"$(cd /srv/rails/fm && bundle exec rake secret)\"" | sudo tee /srv/rails/fm/config/initializers/secret_token.rb > /dev/null
 
 echo
-echo $'Edit /srv/rails/fml/config/ldap.yml with your LDAP server details'
-echo $'Then run `sudo /srv/rails/fml/setupdb.sh` to create database'
-echo $'run `sudo /etc/init.d/fml start` to start app'
+echo $'Edit /srv/rails/fm/config/ldap.yml with your LDAP server details'
+echo $'Then run `sudo /srv/rails/fm/setupdb.sh` to create database'
+echo $'run `sudo /etc/init.d/fm start` to start app'
