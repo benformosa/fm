@@ -23,7 +23,7 @@ class Trip < ActiveRecord::Base
 
   # Calculate the trip's distance. If this is the first trip for this car, return 0
   def get_distance
-    if last_trip.nil?
+    if initial_trip?
       return 0
     else
       odo - last_trip.odo

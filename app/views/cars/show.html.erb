@@ -32,6 +32,6 @@
 <br />
 <%= link_to "Log new trip for " + @car.name, new_trip_path(:car => @car), class: "button" %><br />
 <%= link_to "Show trips for " + @car.name, trips_path(:car => @car) %><br />
-<% if current_user.is_admin or car.user_id == current_user.id %>
+<% if current_user.is_admin %>
   <%= link_to "Edit car", edit_car_path(@car.id) %>
 <% end %>
