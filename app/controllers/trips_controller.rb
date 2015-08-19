@@ -16,7 +16,9 @@ class TripsController < ApplicationController
   end
   
   def create
-    @trip = Trip.new(trip_params[:trip])
+    @trip = Trip.new(trip_params)
+    @trip[:user_id] = current_user.id
+    @trip[:last_trip] = Trip.where(car_id: @trip.car_id).last.id
     if(@trip.save)
       redirect_to :action => :index, :car => @trip.car
     else
@@ -29,6 +31,6 @@ class TripsController < ApplicationController
   
   private
     def trip_params
-      params.require(:trip).permit(:odo, :location, :last_trip, :car, :date, :garage, :personal, :user)
+      params.require(:trip).permit(:odo, :location, :last_trip, :car_id, :date, :garage, :personal)
     end
 end
