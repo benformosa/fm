@@ -125,7 +125,7 @@ openssl x509 -in cert.pem -serial -noout
 
 - - -
 
-## Log in user
+## Sign in user
 ### Preconditions
 * FM is installed and running correctly.
 * Tester has an account in the FM user group.

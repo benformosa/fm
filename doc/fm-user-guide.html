@@ -422,7 +422,7 @@ Select Cancel to exit the uninstaller.&quot;
 <p>Fleet Manager’s log is <code>log/production.log</code> under the app directory. This will show what the application is doing, such as receiving HTTP requests and making database queries. Passenger has a separate log file <code>/var/log/fm.log</code>. This will show what the Passenger service is doing, such as starting and stopping the application.</p>
 <h3 id="troubleshooting-running-application"><a href="#troubleshooting-running-application">Troubleshooting running application</a></h3>
 <h4 id="web-page-loads-but-looks-strange"><a href="#web-page-loads-but-looks-strange">Web page loads but looks strange</a></h4>
-<p><strong>Symptoms:</strong> Web pages use browser default style, no images or styles are loaded.<br />If you attempt to log out, you see a 404 error page.<br />You may see log messages such as:</p>
+<p><strong>Symptoms:</strong> Web pages use browser default style, no images or styles are loaded.<br />If you attempt to sign out, you see a 404 error page.<br />You may see log messages such as:</p>
 <pre><code>I, [2015-08-17T18:33:44.049755 #29405]  INFO -- : Started GET &quot;/javascripts/application.js&quot; for 192.168.1.26 at 2015-08-17 18:33:44 +1000
 F, [2015-08-17T18:33:44.066944 #29405] FATAL -- :
 ActionController::RoutingError (No route matches [GET] &quot;/javascripts/application.js&quot;):
@@ -435,7 +435,7 @@ ActionController::RoutingError (No route matches [GET] &quot;/users/sign_out&quo
 <pre class="sourceCode bash"><code class="sourceCode bash"><span class="ot">RAILS_ENV=</span>production <span class="kw">bundle</span> exec rake assets:precompile</code></pre>
 <h1 id="using-fleet-manager"><a href="#using-fleet-manager">Using Fleet Manager</a></h1>
 <h2 id="navigating-fleet-manager"><a href="#navigating-fleet-manager">Navigating Fleet Manager</a></h2>
-<p>At the bottom of each page are links to the main pages, <strong>Cars</strong>, <strong>Trips</strong>, and <strong>Reports</strong>.<br />Each page also has a log out link.</p>
+<p>At the bottom of each page are links to the main pages, <strong>Cars</strong>, <strong>Trips</strong>, and <strong>Reports</strong>.<br />Each page also has a sign out link.</p>
 <h3 id="signing-in-to-fleet-manager"><a href="#signing-in-to-fleet-manager">Signing in to Fleet Manager</a></h3>
 <p>To Sign in to Fleet Manager, you will need your directory account username and password. This account should be a member of the FM users group, see <a href="#configuring-ldap">Configuring LDAP</a>.</p>
 <p>In a web browser, browse to Fleet Manager’s address. At the <strong>Sign In</strong> page, enter your username and password and click <em>Sign in</em>.</p>
@@ -443,7 +443,7 @@ ActionController::RoutingError (No route matches [GET] &quot;/users/sign_out&quo
 <p>After signing in, you will be redirected to the <strong>Cars</strong> page.</p>
 <p> <img src="images/cars-empty.png" alt="Cars page" /></p>
 <h3 id="logging-out-of-fleet-manager"><a href="#logging-out-of-fleet-manager">Logging out of Fleet Manager</a></h3>
-<p>To log out of Fleet Manager, click the <em>Log out user name</em> link at the bottom of any page. Your session will end and you will be redirected to the <strong>Sign In</strong> page.</p>
+<p>To sign out of Fleet Manager, click the <em>Sign out user name</em> link at the bottom of any page. Your session will end and you will be redirected to the <strong>Sign In</strong> page.</p>
 <h2 id="managing-cars"><a href="#managing-cars">Managing cars</a></h2>
 <h3 id="adding-a-car"><a href="#adding-a-car">Adding a car</a></h3>
 <p>At the <strong>Cars</strong> page, click <em>Add new car</em>.<br />Fill in the form with the details of the car and click <em>Create Car</em>.</p>

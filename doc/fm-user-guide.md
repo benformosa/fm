@@ -459,7 +459,7 @@ Passenger has a separate log file `/var/log/fm.log`. This will show what the Pas
 ### Troubleshooting running application
 #### Web page loads but looks strange
 **Symptoms:** Web pages use browser default style, no images or styles are loaded.  
-If you attempt to log out, you see a 404 error page.  
+If you attempt to sign out, you see a 404 error page.  
 You may see log messages such as:
 
 ```
@@ -481,7 +481,7 @@ RAILS_ENV=production bundle exec rake assets:precompile
 # Using Fleet Manager
 ## Navigating Fleet Manager
 At the bottom of each page are links to the main pages, **Cars**, **Trips**, and **Reports**.  
-Each page also has a log out link.
+Each page also has a sign out link.
 
 ### Signing in to Fleet Manager
 To Sign in to Fleet Manager, you will need your directory account username and password. This account should be a member of the FM users group, see [Configuring LDAP](#configuring-ldap).
@@ -496,7 +496,7 @@ After signing in, you will be redirected to the **Cars** page.
 \ ![Cars page](images/cars-empty.png)
 
 ### Logging out of Fleet Manager
-To log out of Fleet Manager, click the *Log out user name* link at the bottom of any page. Your session will end and you will be redirected to the **Sign In** page.
+To sign out of Fleet Manager, click the *Sign out user name* link at the bottom of any page. Your session will end and you will be redirected to the **Sign In** page.
 
 ## Managing cars
 ### Adding a car

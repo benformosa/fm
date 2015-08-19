@@ -1,8 +1,8 @@
 module FmlHelpers
   def login(login, password)
     visit new_user_session_path
-    if has_link? 'Log out'
-      click_link 'Log out'
+    if has_link? 'Sign out'
+      click_link 'Sign out'
     end
     visit new_user_session_path
     expect(page).to have_content 'Sign in'
@@ -26,6 +26,6 @@ module FmlHelpers
     click_button 'Create Car'
     visit cars_path
     expect(page).to have_content name
-    click_link 'Log out'
+    click_link 'Sign out'
   end
 end
