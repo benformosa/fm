@@ -1,6 +1,11 @@
 Fm::Application.routes.draw do
   devise_for :users
-  root to: "cars#index"
+
+  authenticated :user do
+    root to: 'cars#index', :as => :authenticated_root
+  end
+  root :to => redirect('/users/sign_in')
+  
   resources :cars
 
   resources :trips do
