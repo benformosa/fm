@@ -18,7 +18,7 @@ class Trip < ActiveRecord::Base
 
   # Is this the car's initial trip?
   def initial_trip?
-    Trip.where(car_id: car).empty? or odo.nil? or last_trip.nil?
+    Trip.where(car_id: car).empty? || odo.nil? || last_trip.nil?
   end
 
   # Calculate the trip's distance. If this is the first trip for this car, return 0

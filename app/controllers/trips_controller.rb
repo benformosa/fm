@@ -29,6 +29,6 @@ class TripsController < ApplicationController
   
   private
     def trip_params
-      params.require(:trip).permit(:odo, :location, :last_trip, :car, :date, :garage, :personal)
+      params.require(:trip).permit(:odo, :location, :last_trip, :car, :date, :garage, :personal, :user)
     end
 end
