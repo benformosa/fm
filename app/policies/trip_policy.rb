@@ -8,6 +8,6 @@ class TripPolicy < ApplicationPolicy
 
   # A user may update a trip if it is the most recent trip for that car and if they logged that trip.
   def update?
-    Trip.where(car: @trip.car).last == @trip and @trip.user == @user 
+    Trip.where(car: @trip.car).last == @trip && @trip.user == @user 
   end
 end
