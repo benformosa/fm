@@ -115,3 +115,15 @@ footer {
 .notice, .alert {
   color: $bright;
 }
+
+.links {
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    li {
+      display: inline-block;
+      margin: 0 1vw 0 0;
+    }
+  }
+}

@@ -19,7 +19,13 @@
 
   <footer>
     <% if signed_in? %>
-      <div class="links"><%= link_to "Cars", cars_path %> <%= link_to "Trips", trips_path %> <%= link_to "Reports", reports_path %></div>
+      <div class="links">
+        <ul>
+          <li><%= link_to "Cars", cars_path %></li>
+          <li><%= link_to "Trips", trips_path %></li>
+          <li><%= link_to "Reports", reports_path %></li>
+        </ul>
+      </div>
       <div class="login"><%= link_to "Sign out #{current_user.name}", destroy_user_session_path, :method => :delete %></div>
     <% end %>
   </footer>

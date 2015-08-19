@@ -6,9 +6,13 @@
       display: inline;
       list-style: none;
       float: left;
-      padding: 10px;
-      margin: 5px;
       text-align:center; 
+
+      $square: 120px;
+      width: $square;
+      max-width: $square;
+      height: $square;
+      max-height: $square;
 
       &:hover img {
         opacity:1;
