@@ -10,5 +10,4 @@ Fm::Application.routes.draw do
   resources :trips
 
   get 'reports/', :controller => 'reports', :action => 'index'
-  get 'reports/personalcostperdriver', :controller => 'reports', :action => 'personalcostperdriver'
 end

@@ -1,6 +1,4 @@
 class TripsController < ApplicationController
-  before_action :authenticate_user!
-
   autocomplete :trip, :location, :full => true, :distinct => true
 
   def index
