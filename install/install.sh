@@ -26,11 +26,6 @@ sudo chmod +x /etc/init.d/fm
 sudo wget -q https://raw.githubusercontent.com/benformosa/fm/master/install/etc-fm -O /etc/fm.sh
 sudo chmod +x /etc/fm.sh
 
-# Download the database setup script
-sudo wget -q https://raw.githubusercontent.com/benformosa/fm/master/install/setupdb.sh -O /srv/rails/fm/setupdb.sh
-sudo chown fm:fm /srv/rails/fm/setupdb.sh
-sudo chmod +x /srv/rails/fm/setupdb.sh
-
 # Install required software with gem
 sudo gem install passenger --no-ri --no-rdoc
 sudo gem install bundler --no-ri --no-rdoc
@@ -49,5 +44,5 @@ echo "Fm::Application.config.secret_key_base = \"$(cd /srv/rails/fm && bundle ex
 
 echo
 echo $'Edit /srv/rails/fm/config/ldap.yml with your LDAP server details'
-echo $'Then run `sudo /srv/rails/fm/setupdb.sh` to create database'
+echo $'Then run `sudo /srv/rails/fm/install/setupdb.sh` to create database'
 echo $'run `sudo /etc/init.d/fm start` to start app'

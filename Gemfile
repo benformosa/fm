@@ -6,7 +6,6 @@ gem 'dossier'
 gem 'rails4-autocomplete', :git => 'https://github.com/benformosa/rails4-autocomplete.git'
 
 gem "rails-settings-cached"
-gem "rails-settings-ui"
 
 # for rails.vim
 gem 'erubis', '~> 2.7.0'
