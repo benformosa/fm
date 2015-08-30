@@ -16,6 +16,16 @@ module Fm
     config.admin_group_attribute = ldap_config['admin_group'][0].downcase
     config.admin_group = ldap_config['admin_group'][1].downcase
 
+    config.generators do |g|
+      g.test_framework :rspec,
+        :fixtures => true,
+        :helper_specs => false,
+        :routing_specs => false,
+        :controller_specs => true,
+        :request_specs => true
+      g.fixture_replacement :factory_girl, :dir => "spec/factories"
+    end
+
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     # config.time_zone = 'Central Time (US & Canada)'

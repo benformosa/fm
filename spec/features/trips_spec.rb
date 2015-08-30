@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe 'Trips', :type => :request do
   describe 'GET /trips' do
@@ -6,7 +6,6 @@ describe 'Trips', :type => :request do
       create_car('Test Car', 'make', 'model', 'rego', 'state', 10)
       login('user1', 'user1')
       visit cars_path
-      expect(page).to have_content 'Test Car'
       click_link 'Test Car'
       expect(page).to have_content '10'
     end

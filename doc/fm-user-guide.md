@@ -453,7 +453,7 @@ sudo apt-get remove ruby-dev zlib1g-dev libsqlite3-dev openssl git
 
 ## Troubleshooting
 ### Log files
-Fleet Manager's log is `log/production.log` under the app directory. This will show what the application is doing, such as receiving HTTP requests and making database queries. 
+Fleet Manager's log is `log/production.log` under the app directory. This will show what the application is doing, such as receiving HTTP requests. 
 Passenger has a separate log file `/var/log/fm.log`. This will show what the Passenger service is doing, such as starting and stopping the application.
 
 ### Troubleshooting running application

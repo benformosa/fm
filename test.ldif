@@ -1,0 +1,46 @@
+version: 1
+dn: ou=Users,dc=fm,dc=test
+ou: Users
+objectClass: top
+objectClass: organizationalUnit
+
+dn: ou=Groups,dc=fm,dc=test
+ou: Groups
+objectClass: top
+objectClass: organizationalUnit
+
+dn: cn=user1,ou=Users,dc=fm,dc=test
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+sn: User
+givenName: One
+cn: user1
+userPassword: user1
+mail: user1@example.com
+uid: user1
+
+dn: cn=user2,ou=Users,dc=fm,dc=test
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+sn: User
+givenName: Two
+cn: user2
+userPassword: user2
+mail: user2@example.com
+uid: user2
+
+dn: cn=fm.manager,ou=Users,dc=fm,dc=test
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+sn: User
+givenName: Two
+cn: fm.manager
+userPassword: fm.manager
+mail: fm.manager@example.com
+uid: fm.manager

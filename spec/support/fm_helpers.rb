@@ -1,4 +1,4 @@
-module FmlHelpers
+module FmHelpers
   def login(login, password)
     visit new_user_session_path
     if has_link? 'Sign out'

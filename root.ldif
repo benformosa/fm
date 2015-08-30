@@ -1,0 +1,15 @@
+version: 1
+dn: dc=fm,dc=test
+objectClass: top
+objectClass: dcObject
+objectClass: organization
+dc: fm
+o: fm
+
+dn: cn=admin,dc=fm,dc=test
+objectClass: simpleSecurityObject
+objectClass: organizationalRole
+cn: admin
+description: LDAP administrator
+userPassword:: e1NTSEF9SE1wRmtPeWdKZDE3bmM4eEVRV2VxSjdYeU1hOEVka2U=
+
