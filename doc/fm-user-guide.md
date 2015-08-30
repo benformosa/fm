@@ -200,9 +200,9 @@ Set the following values in the **`authorizations`** section:
 `group_base`
 :	Base OU to search for groups.
 `required_groups`
-:	Set the mapping for `member` to the group containing all FM users.
+:	Array with the first item being the LDAP attribute name which records group members, and the second being the Distinguished Name of the group containing all FM users.
 `admin_group`
-:	Group containing all FM [administrators](#administrators).
+:	Array with the first item being the LDAP attribute name which records group members, and the second being the Distinguished Name of the group containing all FM [administrators](#administrators).
 
 Set the following values in the **`production`** section:
 

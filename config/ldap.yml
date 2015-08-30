@@ -17,8 +17,8 @@ authorizations: &AUTHORIZATIONS
     #objectClass: inetOrgPerson
     #authorizationRole: postsAdmin
 
-  admin_group: cn=fleet-manager-admins,cn=users,dc=fm,dc=internal 
-
+  admin_group: ["member", "cn=fleet-manager-admins,ou=groups,dc=fm,dc=test"]
+   
 ## Environment
 
 development:
@@ -32,11 +32,11 @@ development:
   <<: *AUTHORIZATIONS
 
 test:
-  host: fm.internal
+  host: localhost
   port: 389
-  attribute: samaccountname
-  base: cn=users,dc=fm,dc=internal
-  admin_user: cn=fm_ldap,cn=users,dc=fm,dc=internal
+  attribute: cn
+  base: ou=users,dc=fm,dc=test
+  admin_user: cn=fm_ldap,ou=users,dc=fm,dc=test
   admin_password: fm_ldap
   ssl: false
   <<: *AUTHORIZATIONS

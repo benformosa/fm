@@ -236,10 +236,10 @@ pandoc fm-user-guide.md -f markdown+auto_identifiers+definition_lists --smart --
 <dd>Base OU to search for groups.
 </dd>
 <dt><code>required_groups</code></dt>
-<dd>Set the mapping for <code>member</code> to the group containing all FM users.
+<dd>Array with the first item being the LDAP attribute name which records group members, and the second being the Distinguished Name of the group containing all FM users.
 </dd>
 <dt><code>admin_group</code></dt>
-<dd>Group containing all FM <a href="#administrators">administrators</a>.
+<dd>Array with the first item being the LDAP attribute name which records group members, and the second being the Distinguished Name of the group containing all FM <a href="#administrators">administrators</a>.
 </dd>
 </dl>
 <p>Set the following values in the <strong><code>production</code></strong> section:</p>

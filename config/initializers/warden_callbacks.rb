@@ -1,12 +1,7 @@
 Warden::Manager.after_authentication do |user,auth,opts|
   admin = false
-  memberships = Devise::LDAP::Adapter.get_ldap_param(user.login, 'memberOf')
 
-  memberships.each do |group|
-    group.downcase!
-  end
-
-  if memberships.include?(Fm::Application.config.admin_group)
+  if(Devise::LDAP::Adapter.in_ldap_group?(user.login, Fm::Application.config.admin_group, Fm::Application.config.admin_group_attribute))
     admin = true
   end
 
