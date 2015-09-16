@@ -3,12 +3,12 @@
 # You can also just copy and paste the tree (do not include the "authorizations") to each
 # environment if you need something different per enviornment.
 authorizations: &AUTHORIZATIONS
-  group_base: cn=users,dc=fm,dc=internal
+  group_base: ou=groups,dc=fm,dc=test
   ## Requires config.ldap_check_group_membership in devise.rb be true
   # Can have multiple values, must match all to be authorized
   required_groups:
     # If only a group name is given, membership will be checked against "uniqueMember"
-    - ["member", "cn=fleet-manager-users,cn=users,dc=fm,dc=internal"]
+    - ["member", "cn=fleet-manager-users,ou=groups,dc=fm,dc=test"]
     # If an array is given, the first element will be the attribute to check against, the second the group name
     #- ["moreMembers", "cn=users,cn=groups,dc=test,dc=com"]
   ## Requires config.ldap_check_attributes in devise.rb to be true
@@ -17,16 +17,16 @@ authorizations: &AUTHORIZATIONS
     #objectClass: inetOrgPerson
     #authorizationRole: postsAdmin
 
-  admin_group: ["member", "cn=fleet-manager-admins,cn=groups,dc=fm,dc=internal"]
+  admin_group: ["member", "cn=fleet-manager-admins,cn=groups,dc=fm,dc=test"]
    
 ## Environment
 
 development:
-  host: fm.internal
+  host: localhost
   port: 389
-  attribute: samaccountname
-  base: cn=users,dc=fm,dc=internal
-  admin_user: cn=fm_ldap,cn=users,dc=fm,dc=internal
+  attribute: cn
+  base: ou=users,dc=fm,dc=test
+  admin_user: cn=fm_ldap,ou=users,dc=fm,dc=test
   admin_password: fm_ldap
   ssl: false
   <<: *AUTHORIZATIONS
