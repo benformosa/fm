@@ -12,7 +12,7 @@ sudo chown fm:fm /srv/rails/fm
 
 # Install pre-requisite software
 sudo apt-get update
-sudo apt-get install -y ruby ruby-dev zlib1g-dev libsqlite3-dev openssl git
+sudo apt-get install -y ruby ruby-dev zlib1g-dev libsqlite3-dev openssl git build-essential
 
 # Generate a self-signed certificate
 sudo openssl req -new -x509 -days 365 -nodes -out /etc/ssl/certs/self-signed.pem -keyout /etc/ssl/private/self-signed.key -subj "/C=AU/ST=ACT/L=Canberra/O=Ben Formosa/OU=Fleet Manager/CN=fleetmanager.fm.internal"
