@@ -24,12 +24,12 @@
       <td><%= Trip.find(last_id).location %></td>
       <td><%= trip.location %></td>
       <% if trip.garage %>
-        <td>✓</td>
+        <td class=check-mark>✓</td>
       <% else %>
         <td></td>
       <% end %>
       <% if trip.personal %>
-        <td>✓</td>
+        <td class=check-mark>✓</td>
       <% else %>
         <td></td>
       <% end %>
