@@ -17,7 +17,7 @@ authorizations: &AUTHORIZATIONS
     #objectClass: inetOrgPerson
     #authorizationRole: postsAdmin
 
-  admin_group: ["member", "cn=fleet-manager-admins,cn=groups,dc=fm,dc=test"]
+  admin_group: ["member", "cn=fleet-manager-admins,ou=groups,dc=fm,dc=test"]
    
 ## Environment
 

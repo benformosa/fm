@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Trips', :type => :request do
   describe 'GET /trips' do
     it 'displays some trips' do
-      create_car('Test Car', 'make', 'model', 'rego', 'state', 10)
+      create_car('Test Car', 'make', 'model', 'rego', 'state', 10, 'location')
       login('user1', 'user1')
       visit cars_path
       click_link 'Test Car'

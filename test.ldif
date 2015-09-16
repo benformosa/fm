@@ -44,3 +44,26 @@ cn: fm.manager
 userPassword: fm.manager
 mail: fm.manager@example.com
 uid: fm.manager
+
+dn: cn=fm_ldap,ou=Users,dc=fm,dc=test
+objectClass: top
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+sn: ldap
+givenName: fm
+cn: fm_ldap
+userPassword: fm_ldap
+uid: fm_ldap
+
+dn: cn=fleet-manager-users,ou=Groups,dc=fm,dc=test
+objectclass: groupofnames
+cn: fleet-manager-users
+member: cn=fm.manager,ou=Users,dc=fm,dc=test
+member: cn=user1,ou=Users,dc=fm,dc=test
+member: cn=user2,ou=Users,dc=fm,dc=test
+
+dn: cn=fleet-manager-admins,ou=Groups,dc=fm,dc=test
+objectclass: groupofnames
+cn: fleet-manager-users
+member: cn=fm.manager,ou=Users,dc=fm,dc=test
