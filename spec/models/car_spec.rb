@@ -27,11 +27,11 @@ describe Car do
   end
 
   it "converts spaces in rego to interpuncts" do
-    expect(FactoryGirl.build(:car, rego: 'ABC 123').rego).to eql('ABC·123')
+    expect(FactoryGirl.create(:car, rego: 'ABC 123').rego).to eql('ABC·123')
   end
 
   it "uppercases letters in rego" do
-    expect(FactoryGirl.build(:car, rego: 'abc').rego).to eql('ABC')
+    expect(FactoryGirl.create(:car, rego: 'abc').rego).to eql('ABC')
   end
 
   it "is invalid without a state" do
@@ -48,10 +48,5 @@ describe Car do
 
   it "is invalid without a initial_location" do
     expect(subject).to validate_presence_of :initial_location
-  end
-
-  it "has an initial trip" do
-    car = FactoryGirl.create(:car)
-    expect(Trip.last.car_id).to eql(car.id)
   end
 end

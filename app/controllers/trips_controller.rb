@@ -16,7 +16,6 @@ class TripsController < ApplicationController
   def create
     @trip = Trip.new(trip_params)
     @trip[:user_id] = current_user.id
-    @trip[:last_trip] = Trip.where(car_id: @trip.car_id).last.id
     if(@trip.save)
       redirect_to :action => :index, :car => @trip.car
     else
