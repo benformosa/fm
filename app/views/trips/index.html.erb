@@ -16,9 +16,17 @@
     <tr>
       <td><%= link_to trip.car.name, trips_path(:car => trip.car) %></td>
       <td><%= trip.date.strftime('%d/%m/%Y') %></td>
-      <td class=numeric><%= trip.last_trip.odo %></td>
+      <% if trip.first_trip? %>
+        <td class=numeric><%= Car.find(trip.car_id).start_odo %></td>
+      <% else %>
+        <td class=numeric><%= trip.last_trip.odo %></td>
+      <% end %>
       <td class=numeric><%= trip.odo %></td>
-      <td><%= Trip.find(last_id).location %></td>
+      <% if trip.first_trip? %>
+        <td><%= Car.find(trip.car_id).initial_location %></td>
+      <% else %>
+        <td><%= trip.last_trip.location %></td>
+      <% end %>
       <td><%= trip.location %></td>
       <% if trip.garage %>
         <td class=check-mark>✓</td>
@@ -30,7 +38,7 @@
       <% else %>
         <td></td>
       <% end %>
-      <td class=numeric><%= trip.get_distance %></td>
+      <td class=numeric><%= trip.distance %></td>
       <td><%= trip.user.name %></td>
     </tr>
 <% end %>

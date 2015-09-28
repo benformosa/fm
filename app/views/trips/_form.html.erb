@@ -1,7 +1,18 @@
-<% if params[:car] %>
+<% if @trip.car_id %>
+  <% @trip.car = Car.find(@trip.car_id) %>
+<% elsif params[:car] %>
   <% @trip.car = Car.find(params[:car]) %>
 <% elsif params[:trip] %>
   <% @trip.car = Car.find(params[:trip][:car]) %>
+<% end %>
+
+<% trips = Trip.where(car_id: @trip.car.id) %>
+<% if trips.length == 0 %>
+  <% odo_value = @trip.car.start_odo %>
+  <% location_value = @trip.car.initial_location %>
+<% else %>
+  <% odo_value = Trip.where(car_id: @trip.car.id).last.odo %>
+  <% location_value = Trip.where(car_id: @trip.car.id).last.location %>
 <% end %>
 
 <h3>Car: <%= @trip.car.name %></h3>
@@ -20,19 +31,19 @@
   <% end %>
 
   <div class="field">
-    <%= f.hidden_field :car_id, :value => params[:car] %>
+    <%= f.hidden_field :car_id, :value => @trip.car.id %>
 
     <%= f.label :date, "Date" %><br />
     <%= f.text_field :date, :value => Time.now.strftime('%d/%m/%Y'), :id => 'datepicker-input' %><br />
     
     <label>Start Location</label><br />
-    <input type="text" readonly value="<%= Trip.where(car_id: @trip.car).last.location %>" /><br />
+    <input type="text" readonly value="<%= location_value %>" /><br />
     
     <%= f.label :location, "End location" %><br />
     <%= f.autocomplete_field :location, autocomplete_trip_location_trips_path %><br />
     
     <label>Start odometer reading</label><br />
-    <input type="text" readonly value="<%= Trip.where(car_id: @trip.car).last.odo %>" /><br />
+    <input type="text" readonly value="<%= odo_value %>" /><br />
     
     <%= f.label :odo, "End odometer reading" %><br />
     <%= f.text_field :odo %><br />

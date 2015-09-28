@@ -26,7 +26,12 @@
   </tr>
   <tr>
     <td>Odometer</td>
-    <td><%= Trip.where(car_id: @car.id).last.odo %></td>
+    <% trips = Trip.where(car_id: @car.id) %>
+    <% if trips.length == 0 %>
+      <td><%= @car.start_odo %></td>
+    <% else %>
+      <td><%= Trip.where(car_id: @car.id).last.odo %></td>
+    <% end %>
   </tr>
 </table>
 <br />

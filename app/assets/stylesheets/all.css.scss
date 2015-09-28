@@ -4,6 +4,10 @@ $light: #CCCCCC;
 $background: #F6F6F6;
 $bright: #BF2726;
 
+#ui-datepicker-div {
+  display: none;
+}
+
 @mixin rounded-corners($radius) {
   border-radius: $radius;
   -moz-border-radius: $radius;
