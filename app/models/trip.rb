@@ -18,7 +18,7 @@ class Trip < ActiveRecord::Base
   validate :greater_than_last_trip
   validate :later_than_last_trip
 
-  after_validation :set_distance
+  before_save :set_distance
 
   # true if there are no trips for the car with this trip's car_id
   # only used while building trip
