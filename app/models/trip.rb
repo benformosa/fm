@@ -58,9 +58,13 @@ class Trip < ActiveRecord::Base
 
   # Validate that the odometer reading has gone up since the previous trip
   def greater_than_last_trip
-    unless self.first_trip?
       # don't run this validation if other validations have failed
       return unless errors.blank?
+    if self.first_trip?
+      if Car.find(self.car_id).start_odo >= odo
+        errors.add(:base, "Odometer reading must be greater than the car's Initial Odometer reading.")
+      end
+    else
       if last_trip.odo >= odo
         errors.add(:base, "Odometer reading must be greater than the reading from the last trip")
       end
@@ -69,9 +73,9 @@ class Trip < ActiveRecord::Base
 
   # Validate that the date is not earlier than the previous trip
   def later_than_last_trip
+    # don't run this validation if other validations have failed
+    return unless errors.blank?
     unless self.first_trip?
-      # don't run this validation if other validations have failed
-      return unless errors.blank?
       if last_trip.date > date
         errors.add(:base, "Date cannot be earlier than date of previous trip")
       end
