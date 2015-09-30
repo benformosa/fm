@@ -1,5 +1,4 @@
 class TripsController < ApplicationController
-  before_action :set_trip, only: [:show, :edit, :update, :destroy]
   autocomplete :trip, :location, :full => true, :distinct => true
 
   def index
@@ -24,23 +23,7 @@ class TripsController < ApplicationController
     end
   end
 
-  # def edit
-  # end
-
-  # def update
-    # if @trip.update_attributes(trip_params)
-      # redirect_to :action => :index
-    # else
-      # render :action => edit
-    # end
-  # end
-
   private
-  # # Use callbacks to share common setup or constraints between actions.
-  # def set_trip
-    # @trip = Trip.find(params[:id])
-  # end
-
   def trip_params
     params.require(:trip).permit(:odo, :location, :last_trip, :car_id, :date, :garage, :personal)
   end

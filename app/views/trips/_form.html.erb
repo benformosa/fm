@@ -7,7 +7,7 @@
 <% end %>
 
 <% trips = Trip.where(car_id: @trip.car.id) %>
-<% if trips.length == 0 %>
+<% if @trip.car.no_trips_for_this_car? %>
   <% odo_value = @trip.car.start_odo %>
   <% location_value = @trip.car.initial_location %>
 <% else %>

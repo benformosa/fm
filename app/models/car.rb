@@ -21,4 +21,11 @@ class Car < ActiveRecord::Base
       self.update_column(:rego, self.rego.gsub(' ', '·').upcase)
     end
   end
+
+  # true if there are no trips for the car with this trip's car_id
+  # only used while building trip
+  def no_trips_for_this_car?
+    Trip.where(car_id: self.id).empty?
+  end
+
 end

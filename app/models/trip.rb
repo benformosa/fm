@@ -20,16 +20,9 @@ class Trip < ActiveRecord::Base
 
   before_save :set_distance
 
-  # true if there are no trips for the car with this trip's car_id
-  # only used while building trip
-  def no_trips_for_this_car?
-    Trip.where(car_id: self.car_id).empty?
-  end
-
-  # return which number trip this is. first trip will have 0
-  # only works after it's written to the database
+  # return which number trip this is. Will return 0 for a car's first trip.
   def get_sequence_number
-    if self.no_trips_for_this_car?
+    if Car.find(self.car_id).no_trips_for_this_car?
       0
     else
       Trip.where(car_id: self.car_id).index(self)
