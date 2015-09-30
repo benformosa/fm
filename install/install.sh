@@ -39,6 +39,9 @@ sudo ~/fminstall.sh
 # Clean up
 rm ~/fminstall.sh
 
+# Set setupdb.sh as executable
+chmod +x /srv/rails/fm/install/setupdb.sh
+
 # Set secret token
 echo "Fm::Application.config.secret_key_base = \"$(cd /srv/rails/fm && bundle exec rake secret)\"" | sudo tee /srv/rails/fm/config/initializers/secret_token.rb > /dev/null
 
