@@ -1,0 +1,15 @@
+<h1><%= link_to "Settings", settings_path %></h1>
+<table>
+  <tr>
+    <th>Key</th>
+    <th>Value</th>
+    <th></th>
+  </tr>
+<% @settings.each do |setting| %>
+    <tr>
+      <td><%= setting.var %></td>
+      <td><%= setting.value %></td>
+      <td><%= link_to 'Edit', edit_setting_path(:id => Settings.where(var: setting.var).last.id) %></td>
+    </tr>
+<% end %>
+</table>

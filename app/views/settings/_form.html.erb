@@ -1,0 +1,28 @@
+<%= form_for @setting do |f| %>
+  <% if @setting.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@setting.errors.count, "error") %> prohibited this setting from being saved:</h2>
+
+      <ul>
+      <% @setting.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="field">
+    <%= f.label :var, 'Setting' %><br />
+    <input type="text" readonly value="<%= @setting.var  %>" /><br />
+
+    <%= f.label :value %><br />
+    <%= f.text_field :value %><br />
+
+    <%= f.label :number, "Number" %>
+    <%= f.check_box :number, {:checked => true} %><br />
+  </div>
+ 
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

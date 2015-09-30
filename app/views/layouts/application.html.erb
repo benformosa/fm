@@ -24,6 +24,9 @@
           <li><%= link_to "Cars", cars_path %></li>
           <li><%= link_to "Trips", trips_path %></li>
           <li><%= link_to "Reports", reports_path %></li>
+          <% if current_user.is_admin %>
+            <li><%= link_to "Settings", settings_path %></li>
+          <% end %>
         </ul>
       </div>
       <div class="login"><%= link_to "Sign out #{current_user.name}", destroy_user_session_path, :method => :delete %></div>

@@ -13,6 +13,7 @@ Fm::Application.routes.draw do
   end
 
   resources :trips
+  resources :settings
 
   get 'reports/', :controller => 'reports', :action => 'index'
 end
