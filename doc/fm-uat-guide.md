@@ -157,6 +157,7 @@ Model|Test
 Rego|ABC 123
 State|Test
 Initial Odometer reading|100
+Initial location|Test
 
 2. Click *Test car* and confirm the details.
 
@@ -184,6 +185,7 @@ Model|Test
 Rego|ABC 123
 State|Test
 Initial Odometer reading|100
+Initial location|Test
 
 ### Postconditions
 * Creating the car does not complete.
@@ -243,6 +245,25 @@ End odometer reading|200
 
 ### Postconditions
 * The trip is displayed with a distance of 100.
+
+- - -
+
+## Log trip with invalid data
+### Preconditions
+* The tester is signed in to FM.
+* A car has been created as per the [Add car](#add-car) test.
+
+### Actions
+1. Follow the instructions in the *Logging travel* section of the FM User Guide, for the Car *Test car*, using the values:
+
+Field|Value
+---|---
+End location|Here
+End odometer reading|5
+
+### Postconditions
+* Creating the trip does not complete.
+* The message *"Odometer reading must be greater than the car's Initial Odometer reading."* or *"Odometer reading must be greater than the reading from the last trip"* is displayed.
 
 - - -
 

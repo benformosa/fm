@@ -52,10 +52,11 @@ The odometer reading and distance measurements do not include any units, and no 
 You should ensure that all data entered uses a consistent unit of measurement.
 
 ### Licensing
-Fleet Manager is free software, released under the MIT License.  It includes other free software such as Ruby on Rails, without all of which this project would not exist.
+Fleet Manager is free software, released under the MIT License.  It includes other free software such as Ruby on Rails, without all of which this project would not exist.  
+The license details are available in the LICENCE file.
 
 # Installation
-Fleet Manager is a [Ruby on Rails](http://rubyonrails.org/) application hosted with [Phusion Passenger Standalone](https://www.phusionpassenger.com/), which can be installed on many operating systems. The recommended way to install Fleet Manager is on a dedicated Debian or Ubuntu GNU/Linux computer.
+Fleet Manager is a [Ruby on Rails](http://rubyonrails.org/) application hosted with [Phusion Passenger Standalone](https://www.phusionpassenger.com/), which can be installed on many operating systems. The recommended way to install Fleet Manager is on a dedicated Ubuntu 14.04 computer.
 
 ## Overview
 You can install Fleet Manager using an [installer](#installing-fleet-manager-with-the-installer) or [manually](#installing-fleet-manager-manually).
@@ -72,12 +73,20 @@ Fleet Manager stores all data in a SQLite3 database,  `db/production.sqlite3` un
 
 ## Requirements
 * Create a new user to install and run Fleet Manager.
-* Install Ruby 1.8.5 or higher.
+* Install [Ruby version](#operating-system) 1.8.5 to 2.1.3.
 * LDAP [Directory server](#directory-server)
+
+### Operating System
+While Fleet Manager should work on many GNU/Linux distributions, it has only been tested with Ubuntu 14.04.  
+Some operating systems provide versions of Ruby which are not yet supported by Passenger. Currently, the latest supported version of Ruby is 2.1.3.
 
 ### Directory server
 Fleet Manager requires a directory server to provide user authentication. This could be openLDAP, Microsoft Active Directory, Novell eDirectory or other LDAP-compatible directory. Fleet Manager must be able to communicate with the Directory server using LDAP.  
-It is recommended to create a directory user for Fleet Manager to use to bind to the directory.
+It is recommended to create a dedicated directory user for Fleet Manager to use to bind to the directory.
+
+#### Directory server groups
+To define directory users as [Users](#users) or [Administrators](#administrators); create a group for each in your directory.  
+Users must be added directly to these groups. Nested groups are not supported.
 
 ## Installing Fleet Manager
 ### Installing Fleet Manager with the installer
@@ -87,15 +96,15 @@ The installer is a script which does the following:
 * Creates a user 'fm'.
 * Creates a self-signed certificate for the web server.
 * Creates an init script.
-* Installs ruby and prerequisite software from apt.
-* Installs bundler using gem
+* Installs Ruby and prerequisite software from apt.
+* Installs Bundler using Gem
 * Clones the Fleet Manager source from GitHub
-* Installs required software using bundler
+* Installs required software using Bundler
 * Configures a secret key for the application
 
-To install Fleet Manager on Debian or Ubuntu:
+To install Fleet Manager on Ubuntu:
 
-1. Download and run the script. You will be prompted for your sudo password.
+1. Download and run the script. You will be prompted for your sudo password. The script will take approximately 15 minutes to complete.
 ```bash
 wget https://raw.githubusercontent.com/benformosa/fm/master/install/install.sh
 chmod +x install.sh
@@ -113,8 +122,21 @@ Run the script `install/setupdb.sh` under the app directory.
 /etc/init.d/fm start
 ```
 
+#### Using the installer from behind a web proxy
+If need to use a web proxy to access the web, configure the following:
+
+* Set the `http_proxy` and `https_proxy` environment variables. Gem uses the same format as many other programs; for example, see the [documentation for wget](https://www.gnu.org/software/wget/manual/html_node/Proxies.html).
+```bash
+export {http,https}_proxy=http://username:password@host:port/
+```
+
+* Configure the sudoers option `env_keep` to preserve the http_proxy and https_proxy environment variables. Refer to the [sudoers man page](http://www.sudo.ws/man/sudoers.man.html).
+```ini
+Defaults env_keep += "http_proxy https_proxy"
+```
+
 ### Installing Fleet Manager manually
-To install Fleet Manager on non-Debian based systems:
+To install Fleet Manager without the installer:
 
 1. Create a user to install and run FM as. E.g. `fm`.  
 Set this user's home directory to the app directory and add them to the sudoers group.
@@ -187,7 +209,7 @@ sudo /srv/rails/fm/install/setupdb.sh`
 ```
 
 ## Configuring Fleet Manager
-Configuration for the service is through the configuration file `/etc/fm.sh`. This is a shell script which only sets variables.  
+The Fleet Manager service can be configured with the configuration file `/etc/fm.sh`. This is a shell script which only sets variables.  
 Configuration for the application itself is through configuration files in `config`, under the app directory.
 
 ### Configuring LDAP
@@ -248,7 +270,7 @@ Using HTTPS is recommended, but not required. If you installed FM with the insta
 [Restart](#restarting-fleet-manager) the application after making any changes to the configuration file.
 
 #### Using your own SSL certificate
-To use your own SSL certificate, edit the configuration file `/etc/fm.sh` and update the following lines with the path to your SSL certificate.
+To use your own SSL certificate, edit the configuration file `/etc/fm.sh` and update the following lines with the paths to your SSL certificate and private key.
 ```bash
 SSL_CERT=/etc/ssl/certs/self-signed.pem
 SSL_KEY=/etc/ssl/private/self-signed.key
@@ -265,7 +287,7 @@ PORT=80
 ```
 
 ## Maintaining Fleet Manager
-The Fleet Manager service can be controlled from the initscript `/etc/init.d/fm`.  
+The Fleet Manager service can be controlled with the initscript `/etc/init.d/fm`.  
 
 ### Starting Fleet Manager
 To start the FM service:
@@ -473,9 +495,9 @@ F, [2015-08-17T18:34:15.741476 #29405] FATAL -- :
 ActionController::RoutingError (No route matches [GET] "/users/sign_out"):
 ```
 
-**Resolution:** The web server is not serving static files. Use `rake` to prepare the files to be deliverd to clients
+**Resolution:** The web server is not serving static files. Use `rake` to prepare the files to be delivered to clients
 ```bash
-RAILS_ENV=production bundle exec rake assets:precompile
+sudo --login --user=fm --set-home "RAILS_ENV=production bundle exec rake assets:precompile"
 ```
 
 # Using Fleet Manager
