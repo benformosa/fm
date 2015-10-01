@@ -26,6 +26,9 @@ sudo chmod +x /etc/init.d/fm
 sudo wget -q https://raw.githubusercontent.com/benformosa/fm/master/install/etc-fm -O /etc/fm.sh
 sudo chmod +x /etc/fm.sh
 
+# Set service to start automatically
+sudo update-rc.d fm defaults
+
 # Install required software with gem
 sudo gem install passenger --no-ri --no-rdoc
 sudo gem install bundler --no-ri --no-rdoc
