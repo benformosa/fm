@@ -1,3 +1,7 @@
+#!/bin/bash
+
+sudo service fm stop
+
 # Stash edited config files
 sudo --login --user=fm --set-home sh -c "git stash"
 
@@ -16,3 +20,5 @@ sudo --login --user=fm --set-home sh -c "bundle exec rake db:migrate RAILS_ENV=p
 
 # Prepare static assets
 sudo --login --user=fm --set-home sh -c "RAILS_ENV=production bundle exec rake assets:precompile"
+
+sudo service fm start
