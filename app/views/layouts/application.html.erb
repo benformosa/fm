@@ -9,6 +9,9 @@
 <body>
   <div id="header">
     <h1>Fleet Manager</h1>
+    <% if Rails.env.development? %>
+      <h3>Development</h3>
+    <% end %>
   </div>
 
   <div id="container">
@@ -19,14 +22,15 @@
 
   <footer>
     <% if signed_in? %>
+      Signed in as<% if current_user.is_admin %> admin<% end %>: <%= current_user.name %>
       <div class="links">
         <ul>
           <li><%= link_to "Cars", cars_path %></li>
           <li><%= link_to "Trips", trips_path %></li>
           <li><%= link_to "Reports", reports_path %></li>
+          <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %><li>
         </ul>
       </div>
-      <div class="login"><%= link_to "Sign out #{current_user.name}", destroy_user_session_path, :method => :delete %></div>
     <% end %>
   </footer>
 </body>
