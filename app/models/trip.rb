@@ -62,11 +62,11 @@ class Trip < ActiveRecord::Base
       return unless errors.blank?
     if self.first_trip?
       if Car.find(self.car_id).start_odo >= odo
-        errors.add(:base, "Odometer reading must be greater than the car's Initial Odometer reading.")
+        errors.add(:odo, "Odometer reading must be greater than the car's Initial Odometer reading.")
       end
     else
       if last_trip.odo >= odo
-        errors.add(:base, "Odometer reading must be greater than the reading from the last trip")
+        errors.add(:odo, "Odometer reading must be greater than the reading from the last trip")
       end
     end
   end
@@ -77,7 +77,7 @@ class Trip < ActiveRecord::Base
     return unless errors.blank?
     unless self.first_trip?
       if last_trip.date > date
-        errors.add(:base, "Date cannot be earlier than date of previous trip")
+        errors.add(:date, "Date cannot be earlier than date of previous trip")
       end
     end
   end

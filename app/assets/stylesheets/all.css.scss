@@ -91,6 +91,15 @@ input {
   }
 }
 
+div.field_with_errors {
+  label {
+    color: $bright;
+  }
+  input {
+    border-color: $bright;
+  }
+}
+
 .button, input[type="submit"] {
   color: $background;
   background-color: $dark;
