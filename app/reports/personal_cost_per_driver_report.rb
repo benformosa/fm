@@ -17,7 +17,7 @@ class PersonalCostPerDriverReport < Dossier::Report
   end
 
   def globalcost
-    Settings.globalcost
+    Settings.cost_per_unit_distance
   end
 
   def format_cost(value)
