@@ -1,5 +1,12 @@
+# Stash edited config files
+sudo --login --user=fm --set-home sh -c "git stash"
+
 # Update project from github.com
 sudo --login --user=fm --set-home sh -c "git pull origin master"
+
+# Apply stashed files and delete the stash
+sudo --login --user=fm --set-home sh -c "git stash apply"
+sudo --login --user=fm --set-home sh -c "git stash clear"
 
 # Install required software with bundler
 sudo --login --user=fm --set-home sh -c "bundle install --deployment"
