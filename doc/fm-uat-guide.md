@@ -69,19 +69,51 @@ Tests of the system procedures should be carried out by someone with system admi
 
 - - -
 
-<!--## Scripted uninstallation
+## Scripted uninstallation
 ### Preconditions
+* The tester has systems administration skills.
+* Fleet Manager has been installed as per either the [Scripted Installation](#scripted-installation) or [Manual Installation](#manual-installation) tests.
+
 ### Actions
+1. Follow the instructions in the *Uninstalling Fleet Manager with the uninstaller* section of the FM User Guide.
+2. Confirm that the FM service is not running.
+```bash
+sudo /etc/init.d/fm status
+sudo ps aux | grep passenger
+```
+3. Confirm that the application directory has been removed.
+```bash
+ls /srv/rails/fm
+```
+
 ### Postconditions
+* The FM service is not running.
+* The FM application directory is removed.
 
 - - -
 
 ## Manual uninstallation
 ### Preconditions
-### Actions
-### Postconditions
+* The tester has systems administration skills.
+* Fleet Manager has been installed as per either the [Scripted Installation](#scripted-installation) or [Manual Installation](#manual-installation) tests.
 
-- - --->
+### Actions
+1. Follow the instructions in the *Uninstalling Fleet Manager manually* section of the FM User Guide.
+2. Confirm that the FM service is not running.
+```bash
+sudo /etc/init.d/fm status
+sudo ps aux | grep passenger
+```
+3. Confirm that the application directory has been removed.
+```bash
+ls /srv/rails/fm
+```
+
+### Postconditions
+* The FM service is not running.
+* The FM application directory is removed.
+
+- - -
 
 ## Change SSL certificate
 ### Preconditions
@@ -137,6 +169,23 @@ openssl x509 -in cert.pem -serial -noout
 ### Postconditions
 * The user is signed in.
 * The message *"Signed in successfully"* is displayed.
+
+- - -
+
+## Sign in admin
+### Preconditions
+* FM is installed and running correctly.
+* Tester has an account in the FM admin group.
+* The text *"Signed in as: username"* is displayed in the footer.
+
+### Actions
+1. Connect to FM in a web browser.
+2. Sign in using a directory account.
+
+### Postconditions
+* The user is signed in.
+* The message *"Signed in successfully"* is displayed.
+* The text *"Signed in as admin: username"* is displayed in the footer.
 
 - - -
 

@@ -44,7 +44,8 @@ Each journey from one destination to another is referred to as a trip. This is r
 If a car is kept overnight at an employee's residence, it is garaged there.
 
 #### Personal travel
-If a trip is not for business purposes, it is a personal trip. If your businesses charges employees for personal travel in company vehicles, you can use this to produce a list of charges.
+If a trip is not for business purposes, it is a personal trip. If your businesses charges employees for personal travel in company vehicles, you can use this to produce a list of charges.  
+Currently, updating the cost per unit of travel is not supported via the app. However, you can set the cost by [editing a configuration file](#configuring-personal-trip-cost).
 
 ## Other notes
 ### Units of measurement
@@ -236,6 +237,10 @@ Set the following values in the **`production`** section:
 :	Name of the LDAP attribute that users will enter in the login field. For AD, this is usually `samaccountname`, for openLDAP; it's usually `cn`.
 `base`
 :	Base OU to search for users.
+`admin_user`
+:	Distinguished name of the user with which to bind to the LDAP server.
+`admin_password`
+:	Plain-text password for `admin_user`.
 `ssl`
 :	LDAP encryption method. Options are `simple_tls`, `start_tls`, or `false` to disable LDAPS. See the [Net:LDAP Rubydoc](http://www.rubydoc.info/github/ruby-ldap/ruby-net-ldap/Net/LDAP:encryption)
 
@@ -259,6 +264,21 @@ production
   admin_password: secret
   ssl: false
   <<: *AUTHORIZATIONS
+```
+
+### Configuring personal trip cost
+To set the cost for each unit of travel, edit the configuration file `config/initializers/default_settings.rb`.  
+The default is $1.00 per unit of personal travel. replace **`1`** with the value you want to set.
+```ruby
+Settings.defaults[:cost_per_unit_distance] = 1
+```
+
+To update the value, [stop Fleet Manager](#stopping-fleet-manager), edit the config file as above, clear Fleet Manager's cache with `rake tmp:cache:clear` and [start Fleet Manager](#starting-fleet-manager) again.
+```bash
+sudo /etc/init.d/fm stop
+sudo vi /srv/rails/fm/config/initializers/default_settings.rb
+sudo sudo --login --user=fm --set-home sh -c "bundle exec rake tmp:cache:clear"
+sudo /etc/init.d/fm start
 ```
 
 ### Set up Database
@@ -349,7 +369,7 @@ If FM is already stopped, this action is the same as `start`.
 
 ### Checking if Fleet Manager is running
 To determine if the FM service is running:
-```bash
+```bashupdate 
 sudo /etc/init.d/fm status
 ```
 
@@ -380,6 +400,13 @@ sudo /etc/init.d/fm start
 ```
 
 If you are restoring to a new installation, restore the database in place of performing the [Set up database](#set-up-database) step.
+
+## Updating Fleet Manager
+When an update to Fleet Manager is released on GitHub, you can use the update script to download and install it. This script will download the update from GitHub, update any software dependencies, the database schema and static files.  
+It's advisable to take a backup of your database and configuration files before running an update.
+```bash
+sudo /srv/rails/fm/install/update.sh
+```
 
 ## Uninstalling Fleet Manager
 If you need to retain your Car, Trip and user data, [backup the database](#backing-up-fleet-manager) before uninstalling.

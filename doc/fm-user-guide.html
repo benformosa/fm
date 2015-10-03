@@ -66,6 +66,7 @@ code > span.er { font-weight: bold; }
 </ul></li>
 <li><a href="#configuring-fleet-manager">Configuring Fleet Manager</a><ul>
 <li><a href="#configuring-ldap">Configuring LDAP</a></li>
+<li><a href="#configuring-personal-trip-cost">Configuring personal trip cost</a></li>
 <li><a href="#set-up-database">Set up Database</a></li>
 <li><a href="#configuring-https">Configuring HTTPS</a></li>
 </ul></li>
@@ -77,6 +78,7 @@ code > span.er { font-weight: bold; }
 <li><a href="#backing-up-fleet-manager">Backing up Fleet Manager</a></li>
 <li><a href="#restoring-from-backup">Restoring from backup</a></li>
 </ul></li>
+<li><a href="#updating-fleet-manager">Updating Fleet Manager</a></li>
 <li><a href="#uninstalling-fleet-manager">Uninstalling Fleet Manager</a><ul>
 <li><a href="#uninstalling-fleet-manager-with-the-uninstaller">Uninstalling Fleet Manager with the uninstaller</a></li>
 <li><a href="#uninstalling-fleet-manager-manually">Uninstalling Fleet Manager manually</a></li>
@@ -132,7 +134,7 @@ pandoc fm-user-guide.md -f markdown+auto_identifiers+definition_lists --smart --
 <h4 id="garaging-cars"><a href="#garaging-cars">Garaging cars</a></h4>
 <p>If a car is kept overnight at an employee’s residence, it is garaged there.</p>
 <h4 id="personal-travel"><a href="#personal-travel">Personal travel</a></h4>
-<p>If a trip is not for business purposes, it is a personal trip. If your businesses charges employees for personal travel in company vehicles, you can use this to produce a list of charges.</p>
+<p>If a trip is not for business purposes, it is a personal trip. If your businesses charges employees for personal travel in company vehicles, you can use this to produce a list of charges.<br />Currently, updating the cost per unit of travel is not supported via the app. However, you can set the cost by <a href="#configuring-personal-trip-cost">editing a configuration file</a>.</p>
 <h2 id="other-notes"><a href="#other-notes">Other notes</a></h2>
 <h3 id="units-of-measurement"><a href="#units-of-measurement">Units of measurement</a></h3>
 <p>The odometer reading and distance measurements do not include any units, and no calculations or conversions assume a particular unit of measurement. You should ensure that all data entered uses a consistent unit of measurement.</p>
@@ -269,6 +271,12 @@ pandoc fm-user-guide.md -f markdown+auto_identifiers+definition_lists --smart --
 <dt><code>base</code></dt>
 <dd>Base OU to search for users.
 </dd>
+<dt><code>admin_user</code></dt>
+<dd>Distinguished name of the user with which to bind to the LDAP server.
+</dd>
+<dt><code>admin_password</code></dt>
+<dd>Plain-text password for <code>admin_user</code>.
+</dd>
 <dt><code>ssl</code></dt>
 <dd>LDAP encryption method. Options are <code>simple_tls</code>, <code>start_tls</code>, or <code>false</code> to disable LDAPS. See the <a href="http://www.rubydoc.info/github/ruby-ldap/ruby-net-ldap/Net/LDAP:encryption">Net:LDAP Rubydoc</a>
 </dd>
@@ -290,6 +298,14 @@ production
   <span class="fu">admin_password:</span> secret
   <span class="fu">ssl:</span> false
   <span class="fu">&lt;&lt;:</span> <span class="dt">*AUTHORIZATIONS</span></code></pre>
+<h3 id="configuring-personal-trip-cost"><a href="#configuring-personal-trip-cost">Configuring personal trip cost</a></h3>
+<p>To set the cost for each unit of travel, edit the configuration file <code>config/initializers/default_settings.rb</code>.<br />The default is $1.00 per unit of personal travel. replace <strong><code>1</code></strong> with the value you want to set.</p>
+<pre class="sourceCode ruby"><code class="sourceCode ruby"><span class="dt">Settings</span>.defaults[<span class="st">:cost_per_unit_distance</span>] = <span class="dv">1</span></code></pre>
+<p>To update the value, <a href="#stopping-fleet-manager">stop Fleet Manager</a>, edit the config file as above, clear Fleet Manager’s cache with <code>rake tmp:cache:clear</code> and <a href="#starting-fleet-manager">start Fleet Manager</a> again.</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">sudo</span> /etc/init.d/fm stop
+<span class="kw">sudo</span> vi /srv/rails/fm/config/initializers/default_settings.rb
+<span class="kw">sudo</span> sudo --login --user=fm --set-home sh -c <span class="st">&quot;bundle exec rake tmp:cache:clear&quot;</span>
+<span class="kw">sudo</span> /etc/init.d/fm start</code></pre>
 <h3 id="set-up-database"><a href="#set-up-database">Set up Database</a></h3>
 <p>Run the script <code>install/setupdb.sh</code> to initialise the database.<br />Ensure that LDAP settings are configured and the LDAP server is available before running the script.</p>
 <h3 id="configuring-https"><a href="#configuring-https">Configuring HTTPS</a></h3>
@@ -343,7 +359,7 @@ Service stopped</code></pre>
 <p>This is the same as running the <code>stop</code> and <code>start</code> actions successively.<br />If FM is already stopped, this action is the same as <code>start</code>.</p>
 <h3 id="checking-if-fleet-manager-is-running"><a href="#checking-if-fleet-manager-is-running">Checking if Fleet Manager is running</a></h3>
 <p>To determine if the FM service is running:</p>
-<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">sudo</span> /etc/init.d/fm status</code></pre>
+<pre class="bashupdate"><code>sudo /etc/init.d/fm status</code></pre>
 <p>If it is running, its PID and PID file will be reported.</p>
 <pre><code>Phusion Passenger Standalone is running on PID 25279, according to PID file /var/run/fm.pid</code></pre>
 <p>You will see this message if it is not running.</p>
@@ -359,6 +375,9 @@ Service stopped</code></pre>
 <span class="kw">sudo</span> cp /path/to/backups/production_backup.sqlite3 /srv/rails/fm/db/production.sqlite3
 <span class="kw">sudo</span> /etc/init.d/fm start</code></pre>
 <p>If you are restoring to a new installation, restore the database in place of performing the <a href="#set-up-database">Set up database</a> step.</p>
+<h2 id="updating-fleet-manager"><a href="#updating-fleet-manager">Updating Fleet Manager</a></h2>
+<p>When an update to Fleet Manager is released on GitHub, you can use the update script to download and install it. This script will download the update from GitHub, update any software dependencies, the database schema and static files.<br />It’s advisable to take a backup of your database and configuration files before running an update.</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">sudo</span> /srv/rails/fm/install/update.sh</code></pre>
 <h2 id="uninstalling-fleet-manager"><a href="#uninstalling-fleet-manager">Uninstalling Fleet Manager</a></h2>
 <p>If you need to retain your Car, Trip and user data, <a href="#backing-up-fleet-manager">backup the database</a> before uninstalling.</p>
 <h3 id="uninstalling-fleet-manager-with-the-uninstaller"><a href="#uninstalling-fleet-manager-with-the-uninstaller">Uninstalling Fleet Manager with the uninstaller</a></h3>
