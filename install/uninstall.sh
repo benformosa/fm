@@ -3,6 +3,9 @@
 BACKUPFILE=fm-production-backup_$(date +%s).sqlite3
 
 function uninstall {
+  # Stop application
+  sudo /etc/init.d/fm stop
+
   echo "Backup database (Size $(du -h /srv/rails/fm/db/production.sqlite3 | cut -f1)) to $(echo ~/$BACKUPFILE) ?
 Select Cancel to exit the uninstaller."
   select yn in "Yes" "No" "Cancel"; do
@@ -13,9 +16,6 @@ Select Cancel to exit the uninstaller."
       esac
   done
   
-  # Stop application
-  sudo /etc/init.d/fm stop
-
   # Remove self-signed certificate
   sudo rm /etc/ssl/certs/self-signed.pem
   sudo rm /etc/ssl/private/self-signed.key
@@ -35,9 +35,6 @@ Select Cancel to exit the uninstaller."
 }
 
 function backup {
-  # Stop application
-  sudo /etc/init.d/fm stop
-  
   # Make copy of database
   sudo cp /srv/rails/fm/db/production.sqlite3 ~/$BACKUPFILE
   sudo chown `whoami`:`whoami` ~/$BACKUPFILE
