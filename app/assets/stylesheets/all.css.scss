@@ -75,6 +75,12 @@ tr:nth-child(even) {
   background: $light
 }
 
+div.field {
+  input, label {
+    display: block;
+  }
+}
+
 input {
   border: 1px solid $mid;
   padding: 2px;

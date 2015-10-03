@@ -33,26 +33,26 @@
   <div class="field">
     <%= f.hidden_field :car_id, :value => @trip.car.id %>
 
-    <%= f.label :date, "Date" %><br />
-    <%= f.text_field :date, :value => Time.now.strftime('%d/%m/%Y'), :id => 'datepicker-input' %><br />
+    <%= f.label :date, "Date" %>
+    <%= f.text_field :date, :value => Time.now.strftime('%d/%m/%Y'), :id => 'datepicker-input' %>
     
-    <label>Start Location</label><br />
-    <input type="text" readonly value="<%= location_value %>" /><br />
+    <label>Start Location</label>
+    <input type="text" readonly value="<%= location_value %>" />
     
-    <%= f.label :location, "End location" %><br />
-    <%= f.autocomplete_field :location, autocomplete_trip_location_trips_path %><br />
+    <%= f.label :location, "End location" %>
+    <%= f.autocomplete_field :location, autocomplete_trip_location_trips_path %>
     
-    <label>Start odometer reading</label><br />
-    <input type="text" readonly value="<%= odo_value %>" /><br />
+    <label>Start odometer reading</label>
+    <input type="text" readonly value="<%= odo_value %>" />
     
-    <%= f.label :odo, "End odometer reading" %><br />
-    <%= f.text_field :odo %><br />
+    <%= f.label :odo, "End odometer reading" %>
+    <%= f.text_field :odo %>
 
     <%= f.label :garage, "Garaged" %>
-    <%= f.check_box :garage, {:checked => false} %><br />
+    <%= f.check_box :garage, {:checked => false} %>
 
     <%= f.label :personal, "Personal" %>
-    <%= f.check_box :personal, {:checked => false} %><br />
+    <%= f.check_box :personal, {:checked => false} %>
   </div>
 
   <div class="actions">

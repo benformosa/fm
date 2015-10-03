@@ -12,37 +12,37 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name %><br />
+    <%= f.label :name %>
+    <%= f.text_field :name %>
 
     <%# If this is not a new car (persisted?) and you are the cars owner or an admin %>
     <% if @car.persisted? && (current_user.is_admin || @car.user_id == current_user.id) %>
-      <%= f.label :enable %><br />
-      <%= f.check_box :enable %><br />
+      <%= f.label :enable %>
+      <%= f.check_box :enable %>
     <% end %>
 
     <% if current_user.is_admin? %>
-      <%= f.label :fleet %><br />
-      <%= f.check_box :fleet %><br />
+      <%= f.label :fleet %>
+      <%= f.check_box :fleet %>
     <% end %>
 
-    <%= f.label :make %><br />
-    <%= f.text_field :make %><br />
+    <%= f.label :make %>
+    <%= f.text_field :make %>
 
-    <%= f.label :model %><br />
-    <%= f.text_field :model %><br />
+    <%= f.label :model %>
+    <%= f.text_field :model %>
 
-    <%= f.label :rego %><br />
-    <%= f.text_field :rego %><br />
+    <%= f.label :rego %>
+    <%= f.text_field :rego %>
 
-    <%= f.label :state %><br />
-    <%= f.text_field :state %><br />
+    <%= f.label :state %>
+    <%= f.text_field :state %>
 
-    <%= f.label :start_odo, "Initial Odometer reading" %><br />
-    <%= f.text_field :start_odo %><br />
+    <%= f.label :start_odo, "Initial Odometer reading" %>
+    <%= f.text_field :start_odo %>
 
-    <%= f.label :initial_location, "Initial location" %><br />
-    <%= f.autocomplete_field :initial_location, autocomplete_trip_location_trips_path %><br />
+    <%= f.label :initial_location, "Initial location" %>
+    <%= f.autocomplete_field :initial_location, autocomplete_trip_location_trips_path %>
 
   </div>
  
